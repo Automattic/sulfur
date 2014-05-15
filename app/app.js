@@ -1,11 +1,10 @@
 var app = app || {};
 
 // Init the router.
-new app.Router();
+app.routerInstance = new app.Router();
 
 // Get the user
-var getCurrentUser = app.getCurrentUser();
-
-$.when( getCurrentUser ).done( function() {
+app.getCurrentUser( function() {
+	// Start routing once we have a current user
 	Backbone.history.start();
 } );

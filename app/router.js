@@ -4,16 +4,15 @@ app.Router = Backbone.Router.extend({
 	routes: {
 		'': 						'home',
 		'authorize': 				'authorize',
-		'access_token=*fragment':	'getAuthFragment'
+		'access_token=*fragment':	'getAuthFragment',
 	},
 
 	home: function() {
 		var helloView = new app.helloView();
+		helloView.render();
 	},
 
 	authorize: function() {
-		console.log( 'authorize' );
-
 		var authorizationView = new app.authorizationView();
 		authorizationView.render();
 	},
@@ -31,5 +30,7 @@ app.Router = Backbone.Router.extend({
 
 		localStorage.setItem( 'access_token', decodeURIComponent( response.access_token ) );
 		localStorage.setItem( 'site_id', response.site_id );
+
+		this.navigate( '', { trigger: true } );
 	}
 });
