@@ -7,7 +7,7 @@ app.Router = Backbone.Router.extend({
 	},
 
 	authorize: function() {
-		var authorizeView = new app.authorizeView();
-		authorizeView.render();
+		var authorizationView = new app.authorizationView();
+		authorizationView.render();
 	}
 });

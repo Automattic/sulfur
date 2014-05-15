@@ -32,7 +32,7 @@
 
     <!-- Template JS -->
     <script type="text/template" id="authorize-template">
-      <a href="https://public-api.wordpress.com/oauth2/authorize?response_type=code&client_id=<%- app.config.oAuth.clientID %>&redirect_uri=<%- app.config.oAuth.redirectURL %>" class="authorize">Log In with WordPress Connect</a>
+      <a href="https://public-api.wordpress.com/oauth2/authorize?response_type=token&client_id=<%- app.config.oAuth.clientID %>&redirect_uri=<%- app.config.oAuth.redirectURL %>" class="authorize">Log In with WordPress Connect</a>
     </script>
 
     <!-- Library JS -->
@@ -49,8 +49,9 @@
 
     <!-- App JS -->
     <script src="app/config.js"></script>
+    <script src="app/models/authorization.js"></script>
     <script src="app/models/user.js"></script>
-    <script src="app/views/authorize.js"></script>
+    <script src="app/views/authorization.js"></script>
 
     <script src="app/router.js"></script>
     <script src="app/app.js"></script>
