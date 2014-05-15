@@ -17,11 +17,30 @@
     <![endif]-->
   </head>
   <body>
-    <h1>What up, sulfur?</h1>
+    <div id="main"></div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/backbone.js"></script>
+    <script src="js/underscore.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+    <script>
+      window.app = {};
+    </script>
+
+    <!-- App JS -->
+    <script src="app/config.js"></script>
+    <script src="app/models/user.js"></script>
+
+    <script src="app/router.js"></script>
+    <script src="app/app.js"></script>
+
+    <!-- Template JS -->
+    <script type="text/template" id="authorize-template">
+        <div id="authorize">
+            <a href="https://public-api.wordpress.com/oauth2/authorize?response_type=code&client_id=<%- app.config.oAuth.clientID %>&redirect_uri=<%- app.config.oAuth.redirectURL %>" class="authorize">Log In with WordPress Connect</a>
+        </div>
+    </script>
+
   </body>
 </html>
