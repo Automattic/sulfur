@@ -1,11 +1,9 @@
 var uploader = new plupload.Uploader({
-	runtimes : 'html5,flash,silverlight,html4',
+	runtimes : 'html5,html4',
 	browse_button : 'pickfiles', // you can pass in id...
 	container: document.getElementById('container'), // ... or DOM Element itself
 	url : 'https://public-api.wordpress.com/rest/v1/sites/65983932/media/new', // TODO site_id from the auth response
 	file_data_name : 'media',
-	flash_swf_url : '../js/Moxie.swf',
-	silverlight_xap_url : '../js/Moxie.xap',
 	headers : { Authorization : "Bearer YOUR_TOKEN_HERE" }, // TODO real token
 
 	filters : {
