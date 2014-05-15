@@ -1,0 +1,23 @@
+body {
+	position: relative;
+	min-height: 300px;
+}
+
+body#the-body.dragged {
+	background: #83b4d8;
+	opacity: .3;
+}
+
+body#the-body.dragged::after {
+	content: 'Drop to Upload';
+	position: absolute;
+	text-align: center;
+	font-weight: bold;
+	font-size: 50px;
+	top: 50%;
+	left: 50%;
+	width: 380px;
+	height: 76px;
+	margin-top: -38px;
+	margin-left: -190px;
+}

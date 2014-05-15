@@ -3,6 +3,7 @@ var uploader = new plupload.Uploader({
 	browse_button : 'pickfiles', // you can pass in id...
 	container: document.getElementById('container'), // ... or DOM Element itself
 	url : 'foo',
+	drop_element : document.getElementById( 'the-body' ),
 	filters : {
 		max_file_size : '10mb',
 		mime_types: [
@@ -37,3 +38,15 @@ var uploader = new plupload.Uploader({
 });
 
 uploader.init();
+
+$( document ).on( 'dragover', '#the-body', function(){
+	$( '#the-body' ).addClass( 'dragged' );
+} );
+
+$( document ).on( 'drop', '#the-body', function(){
+	$( '#the-body' ).removeClass( 'dragged' );
+} );
+
+$( document ).on( 'dragleave', '#the-body', function(){
+	$( '#the-body' ).removeClass( 'dragged' );
+} );
