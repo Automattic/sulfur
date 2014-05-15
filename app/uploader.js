@@ -3,9 +3,6 @@ var uploader = new plupload.Uploader({
 	browse_button : 'pickfiles', // you can pass in id...
 	container: document.getElementById('container'), // ... or DOM Element itself
 	url : 'foo',
-	flash_swf_url : '../js/Moxie.swf',
-	silverlight_xap_url : '../js/Moxie.xap',
-
 	filters : {
 		max_file_size : '10mb',
 		mime_types: [
