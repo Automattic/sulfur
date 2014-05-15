@@ -1,5 +1,5 @@
 var uploader = new plupload.Uploader({
-	runtimes : 'html5,flash,silverlight,html4',
+	runtimes : 'html5,html4',
 	browse_button : 'pickfiles', // you can pass in id...
 	container: document.getElementById('container'), // ... or DOM Element itself
 	url : 'foo',
