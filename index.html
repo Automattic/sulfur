@@ -30,12 +30,19 @@
     <br />
     <pre id="console"></pre>
 
+    <!-- Template JS -->
+    <script type="text/template" id="authorize-template">
+      <a href="https://public-api.wordpress.com/oauth2/authorize?response_type=code&client_id=<%- app.config.oAuth.clientID %>&redirect_uri=<%- app.config.oAuth.redirectURL %>" class="authorize">Log In with WordPress Connect</a>
+    </script>
+
+    <!-- Library JS -->
     <script src="js/jquery.js"></script>
     <script src="js/underscore.js"></script>
     <script src="js/backbone.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/plupload.full.min.js"></script>
 
+    <!-- App Init -->
     <script>
       window.app = {};
     </script>
@@ -48,13 +55,6 @@
     <script src="app/router.js"></script>
     <script src="app/app.js"></script>
     <script src="app/uploader.js"></script>
-
-    <!-- Template JS -->
-    <script type="text/template" id="authorize-template">
-        <div id="authorize">
-            <a href="https://public-api.wordpress.com/oauth2/authorize?response_type=code&client_id=<%- app.config.oAuth.clientID %>&redirect_uri=<%- app.config.oAuth.redirectURL %>" class="authorize">Log In with WordPress Connect</a>
-        </div>
-    </script>
 
   </body>
 </html>
