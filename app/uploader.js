@@ -2,7 +2,9 @@ var uploader = new plupload.Uploader({
 	runtimes : 'html5,html4',
 	browse_button : 'pickfiles', // you can pass in id...
 	container: document.getElementById('container'), // ... or DOM Element itself
-	url : 'foo',
+	url : 'https://public-api.wordpress.com/rest/v1/sites/65983932/media/new', // TODO site_id from the auth response
+	file_data_name : 'media',
+	headers : { Authorization : "Bearer YOUR_TOKEN_HERE" }, // TODO real token
 	drop_element : document.getElementById( 'the-body' ),
 	filters : {
 		max_file_size : '10mb',

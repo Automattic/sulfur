@@ -32,6 +32,10 @@
     <br />
 
     <!-- Template JS -->
+    <script type="text/template" id="hello-template">
+        <h1>Hello, <%- display_name %>!</h1>
+    </script>
+
     <script type="text/template" id="authorize-template">
       <a href="https://public-api.wordpress.com/oauth2/authorize?response_type=token&client_id=<%- app.config.oAuth.clientID %>&redirect_uri=<%- app.config.oAuth.redirectURL %>" class="authorize">Log In with WordPress Connect</a>
     </script>
@@ -50,8 +54,9 @@
 
     <!-- App JS -->
     <script src="app/config.js"></script>
-    <script src="app/models/authorization.js"></script>
+    <script src="app/helpers.js"></script>
     <script src="app/models/user.js"></script>
+    <script src="app/views/hello.js"></script>
     <script src="app/views/authorization.js"></script>
 
     <script src="app/router.js"></script>
