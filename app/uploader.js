@@ -38,6 +38,13 @@ var uploader = new plupload.Uploader({
 			document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
 		},
 
+		FileUploaded: function(up, file, response) {
+			var data = jQuery.parseJSON(response.response);
+			$.each( data['media'], function( i, elem ) {
+				$('#filegrid').prepend( '<img src="' + elem.link + '" width="150" height="150" />' );
+			} );
+		},
+
 		Error: function(up, err) {
 			document.getElementById('console').innerHTML += "\nError #" + err.code + ": " + err.message;
 		}
