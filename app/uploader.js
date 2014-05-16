@@ -8,7 +8,7 @@ var uploader = new plupload.Uploader({
 	browse_button : 'pickfiles', // you can pass in id...
 	container: document.getElementById('container'), // ... or DOM Element itself
 	url : 'https://public-api.wordpress.com/rest/v1/sites/' + site_id + '/media/new',
-	file_data_name : 'media',
+	file_data_name : 'test',
 	headers : { Authorization : "Bearer " + access_token },
 	drop_element : document.getElementById( 'the-body' ),
 	filters : {
@@ -26,6 +26,10 @@ var uploader = new plupload.Uploader({
 				uploader.start();
 				return false;
 			};
+		},
+
+		BeforeUpload: function(up, file) {
+			up.settings.multipart_params = { media : file.getNative() }
 		},
 
 		FilesAdded: function(up, files) {
