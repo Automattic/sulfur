@@ -40,6 +40,9 @@
       <a href="https://public-api.wordpress.com/oauth2/authorize?response_type=token&client_id=<%- app.config.oAuth.clientID %>&redirect_uri=<%- app.config.oAuth.redirectURL %>" class="authorize">Log In with WordPress Connect</a>
     </script>
 
+    <div id='filegrid-title'>Loading your media library...</div>
+    <div id='filegrid' />
+
     <!-- Library JS -->
     <script src="js/jquery.js"></script>
     <script src="js/underscore.js"></script>
@@ -62,6 +65,7 @@
     <script src="app/router.js"></script>
     <script src="app/app.js"></script>
     <script src="app/uploader.js"></script>
+    <script src="app/filelist.js"></script>
 
   </body>
 </html>
