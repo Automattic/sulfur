@@ -5,9 +5,7 @@ app.filelistCollection = Backbone.Collection.extend( {
 	url: 'https://public-api.wordpress.com/rest/v1/sites/' + app.auth.siteID + '/media/',
 
 	initialize: function() {
-		this.fetch( {
-			reset: true
-		} );
+		this.fetch( { reset: true } );
 	},
 
 	parse: function( response ) {
