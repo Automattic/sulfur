@@ -8,7 +8,6 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
     <link href="css/app.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -36,8 +35,12 @@
         <h1>Hello, <%- display_name %>!</h1>
     </script>
 
+    <script type="text/template" id="logout-template">
+        <a href="#logout" id="logout">Log Out</a>
+    </script>
+
     <script type="text/template" id="authorize-template">
-      <a href="https://public-api.wordpress.com/oauth2/authorize?response_type=token&client_id=<%- app.config.oAuth.clientID %>&redirect_uri=<%- app.config.oAuth.redirectURL %>" class="authorize">Log In with WordPress Connect</a>
+      <a href="https://public-api.wordpress.com/oauth2/authorize?response_type=token&client_id=<%- app.config.oAuth.clientID %>&redirect_uri=<%- app.config.oAuth.redirectURL %>" class="authorize">Login with WordPress.com</a>
     </script>
 
     <div id='filegrid-title'>Loading your media library...</div>
