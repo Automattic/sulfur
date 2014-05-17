@@ -20,17 +20,13 @@ var uploader = new plupload.Uploader({
 	init: {
 		PostInit: function() {
 			document.getElementById('filelist').innerHTML = '';
-
-			document.getElementById('uploadfiles').onclick = function() {
-				uploader.start();
-				return false;
-			};
 		},
 
 		FilesAdded: function(up, files) {
 			plupload.each(files, function(file) {
 				document.getElementById('filelist').innerHTML += '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
 			});
+			up.start();
 		},
 
 		UploadProgress: function(up, file) {
