@@ -16,9 +16,7 @@ app.filelistView = Backbone.View.extend({
 		this.$el.attr( 'id', this.id );
 
 		$.each( this.collection.models, _.bind( function( i, file ) {
-			var fileView = new app.fileView({ model: file });
-			var output = fileView.render();
-			this.$el.append( output.el );
+			this.$el.append( this.renderFile( file ) );
 		}, this ) );
 
 		$( '#main' ).append( this.$el );
@@ -27,6 +25,8 @@ app.filelistView = Backbone.View.extend({
 	},
 
 	renderFile: function( file ) {
+		var fileView = new app.fileView( { model: file } );
 
+		return fileView.render().el;
 	}
 });
