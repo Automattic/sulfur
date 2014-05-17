@@ -14,7 +14,7 @@ app.singleView = Backbone.View.extend({
 
 		this.$el.find( '.single-image-actions .single-image-delete' ).click( function() {
 			if ( confirm( 'Are you sure you want to delete this image?' ) ) {
-				that.model.destroy( { 
+				that.model.destroy( {
 					success: function( model, response ) {
 						app.router.navigate( '', { trigger: true } );
 					}
@@ -22,8 +22,6 @@ app.singleView = Backbone.View.extend({
 			}
 			return false;
 		} );
-
-		$( '#main' ).html( this.el );
 
 		return this;
 	}

@@ -15,9 +15,7 @@ app.filelistView = Backbone.View.extend({
 	},
 
 	setLoading: function() {
-		this.$el
-			.html( 'Loading your media library...' )
-			.appendTo( '#main' );
+		this.$el.html( 'Loading your media library...' );
 	},
 
 	render: function() {
@@ -26,7 +24,6 @@ app.filelistView = Backbone.View.extend({
 		$.each( this.collection.models, _.bind( function( i, file ) {
 			this.appendFile( file );
 		}, this ) );
-
 
 		$( '#pickfiles' ).show();
 

@@ -9,8 +9,6 @@ app.authorizationView = Backbone.View.extend( {
 			this.template()
 		);
 
-		$( '#main' ).html( this.el );
-
 		return this;
 	}
 } );

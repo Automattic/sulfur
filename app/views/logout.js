@@ -9,8 +9,6 @@ app.logoutView = Backbone.View.extend( {
 			this.template()
 		);
 
-		$( '#main' ).append( this.el )
-
 		return this;
 	}
 } );
