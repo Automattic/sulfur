@@ -16,9 +16,13 @@ app.auth = {
 
 // Init the router.
 app.router = new app.Router();
-Backbone.history.start({pushState: true});
+if ( location.pathname.indexOf( 'access_token' ) > -1 ) {
+	Backbone.history.start();
+} else {
+	Backbone.history.start({pushState: true});
+}
 
 // Redirect to authorize route if there's no auth details
 if ( _.isNull( app.auth.accessToken ) || _.isNull( app.auth.siteID ) ) {
-	app.router.navigate( 'authorize' );
+	app.router.navigate( 'authorize', { trigger: true, replace: true } );
 }

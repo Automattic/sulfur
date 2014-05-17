@@ -22,14 +22,14 @@ app.Router = Backbone.Router.extend({
 		app.auth = {};
 		localStorage.removeItem( 'access_token' );
 		localStorage.removeItem( 'site_id' );
-		this.navigate( 'authorize' );
+		this.navigate( 'authorize', { trigger: true, replace: true } );
 	},
 
 	getAuthFragment: function() {
 		// Extract the auth details from the # fragment returned by the API
 		var response = _.object(
 			_.compact(
-				_.map( location.hash.slice( 1 ).split( '&' ), function ( item ) {
+				_.map( location.pathname.slice( 1 ).split( '&' ), function ( item ) {
 					if ( item ) {
 						return item.split( '=' );
 					}
@@ -44,7 +44,7 @@ app.Router = Backbone.Router.extend({
 
 		localStorage.setItem( 'access_token', app.auth.accessToken );
 		localStorage.setItem( 'site_id', app.auth.siteID );
-		this.navigate( 'home' );
+		this.navigate( '', {trigger: true} );
 	},
 
 	viewSingleItem : function() {
