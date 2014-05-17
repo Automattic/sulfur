@@ -29,7 +29,7 @@ app.Router = Backbone.Router.extend({
 		// Extract the auth details from the # fragment returned by the API
 		var response = _.object(
 			_.compact(
-				_.map( location.pathname.slice( 1 ).split( '&' ), function ( item ) {
+				_.map( location.hash.slice( 1 ).split( '&' ), function ( item ) {
 					if ( item ) {
 						return item.split( '=' );
 					}
