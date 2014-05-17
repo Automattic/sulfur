@@ -43,6 +43,12 @@
       <a href="https://public-api.wordpress.com/oauth2/authorize?response_type=token&client_id=<%- app.config.oAuth.clientID %>&redirect_uri=<%- app.config.oAuth.redirectURL %>" class="authorize">Login with WordPress.com</a>
     </script>
 
+    <script type="text/template" id="single-template">
+      <div class="single-image">
+          <img src="<%- link %>" width="500">
+      </div>
+    </script>
+
     <div id='filegrid-title'>Loading your media library...</div>
 
     <!-- Library JS -->
@@ -64,6 +70,7 @@
     <script src="app/collections/filelist.js"></script>
     <script src="app/views/file.js"></script>
     <script src="app/views/filelist.js"></script>
+    <script src="app/views/single.js"></script>
 
     <script src="app/router.js"></script>
     <script src="app/app.js"></script>

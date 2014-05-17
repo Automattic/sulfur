@@ -52,7 +52,11 @@ app.Router = Backbone.Router.extend({
 		this.navigate( '', {trigger: true} );
 	},
 
-	viewSingleItem : function() {
-		console.log( 'viewing single item' );
+	viewSingleItem : function( id ) {
+		var singleItem = new app.fileModel({ id: id });
+		singleItem.fetch().done( function() {
+			var singleItemView = new app.singleView({ model: singleItem });
+			singleItemView.render();
+		});
 	}
 });
