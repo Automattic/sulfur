@@ -15,10 +15,10 @@ app.auth = {
 }
 
 // Init the router.
-app.routerInstance = new app.Router();
-Backbone.history.start();
+app.router = new app.Router();
+Backbone.history.start({pushState: true});
 
 // Redirect to authorize route if there's no auth details
 if ( _.isNull( app.auth.accessToken ) || _.isNull( app.auth.siteID ) ) {
-	location.hash = 'authorize';
+	app.router.navigate( 'authorize' );
 }
