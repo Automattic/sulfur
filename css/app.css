@@ -21,3 +21,12 @@ body#the-body.dragged::after {
 	margin-top: -38px;
 	margin-left: -190px;
 }
+
+#authorize {
+	text-align: center;
+}
+
+#authorize img {
+	display: block;
+	margin: 25px auto;
+}
