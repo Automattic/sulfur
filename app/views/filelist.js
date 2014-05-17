@@ -3,9 +3,19 @@ var app = app || {};
 app.filelistView = Backbone.View.extend({
 	id: 'filegrid',
 
-	render: function( models ) {
+	initialize: function() {
+    	var self = this;
+
+    	this.collection = new app.filelistCollection();
+    	this.collection.fetch().done( function(){
+      		self.render();
+    	} );
+	},
+
+	render: function() {
 		this.$el.attr( 'id', this.id );
-		$.each( models, _.bind( function( i, file ) {
+
+		$.each( this.collection.models, _.bind( function( i, file ) {
 			var fileView = new app.fileView({ model: file });
 			var output = fileView.render();
 			this.$el.append( output.el );
@@ -14,5 +24,9 @@ app.filelistView = Backbone.View.extend({
 		$( '#main' ).append( this.$el );
 
 		return this;
+	},
+
+	renderFile: function( file ) {
+
 	}
 });
