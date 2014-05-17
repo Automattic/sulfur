@@ -1,7 +1,5 @@
 var app = app || {};
 
-if ( ! app.auth.accessToken ) { return; }
-
 var uploader = new plupload.Uploader({
 	runtimes : 'html5,html4',
 	browse_button : 'pickfiles', // you can pass in id...
@@ -20,6 +18,7 @@ var uploader = new plupload.Uploader({
 	init: {
 		PostInit: function() {
 			document.getElementById('filelist').innerHTML = '';
+			app.spinnerViews = [];
 		},
 
 		FilesAdded: function(up, files) {
@@ -29,6 +28,12 @@ var uploader = new plupload.Uploader({
 			up.start();
 		},
 
+		BeforeUpload: function(up, file) {
+			var newSpinner = new app.spinnerView();
+			app.spinnerViews.push( newSpinner );
+			$('#filegrid').prepend( newSpinner.render().el );
+		},
+
 		UploadProgress: function(up, file) {
 			document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
 		},
@@ -36,8 +41,9 @@ var uploader = new plupload.Uploader({
 		FileUploaded: function(up, file, response) {
 			var data = jQuery.parseJSON(response.response);
 			$.each( data['media'], function( i, elem ) {
-				// TODO add the new item to the backbone collection
-				$('#filegrid').prepend( '<img src="' + elem.link + '" width="150" height="150" />' );
+				app.spinnerViews.pop().remove();
+				var newFile = new app.fileModel( elem );
+				app.filelistViewInstance.collection.add( newFile );
 			} );
 		},
 

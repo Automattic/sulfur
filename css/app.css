@@ -34,3 +34,11 @@ body#the-body.dragged::after {
 #pickfiles {
 	display: none;
 }
+
+.spinner {
+	background: url('/images/spinner.gif') #f0f0f0 no-repeat center center;
+	width: 150px;
+	height: 150px;
+	vertical-align: middle;
+	display: inline-block;
+}

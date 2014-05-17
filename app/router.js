@@ -12,9 +12,10 @@ app.Router = Backbone.Router.extend({
 	},
 
 	home: function() {
+		app.filelistViewInstance = new app.filelistView();
 		this.renderViews( [
 			new app.logoutView(),
-			new app.filelistView(),
+			app.filelistViewInstance,
 			new app.pickerView()
 		] );
 	},
