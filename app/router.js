@@ -4,6 +4,7 @@ app.Router = Backbone.Router.extend({
 	routes: {
 		'': 						'home',
 		'authorize': 				'authorize',
+		'logout': 					'logout',
 		'access_token=*fragment':	'getAuthFragment',
 	},
 
@@ -14,6 +15,14 @@ app.Router = Backbone.Router.extend({
 	authorize: function() {
 		var authorizationView = new app.authorizationView();
 		authorizationView.render();
+	},
+
+	logout: function() {
+		app.auth = {};
+		localStorage.removeItem( 'access_token' );
+		localStorage.removeItem( 'site_id' );
+
+		location.hash = 'authorize';
 	},
 
 	getAuthFragment: function() {
@@ -36,6 +45,6 @@ app.Router = Backbone.Router.extend({
 		localStorage.setItem( 'access_token', app.auth.accessToken );
 		localStorage.setItem( 'site_id', app.auth.siteID );
 
-		this.navigate( '', { trigger: true } );
+		location.hash = '';
 	}
 });

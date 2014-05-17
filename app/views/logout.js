@@ -1,15 +1,15 @@
 var app = app || {};
 
 app.authorizationView = Backbone.View.extend( {
-	id: 'authorize',
-	template: _.template( $( '#authorize-template' ).html() ),
+	id: 'logout',
+	template: _.template( $( '#logout-template' ).html() ),
 
 	render: function() {
 		this.$el.html(
 			this.template()
 		);
 
-		$( '#main' ).html( this.el );
+		$( '#main' ).append( this.el )
 
 		return this;
 	}
