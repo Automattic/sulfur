@@ -10,6 +10,7 @@ app.Router = Backbone.Router.extend({
 	},
 
 	home: function() {
+		$( '#main' ).html( '' );
 		new app.filelistView();
 	},
 
