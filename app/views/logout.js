@@ -1,6 +1,6 @@
 var app = app || {};
 
-app.authorizationView = Backbone.View.extend( {
+app.logoutView = Backbone.View.extend( {
 	id: 'logout',
 	template: _.template( $( '#logout-template' ).html() ),
 

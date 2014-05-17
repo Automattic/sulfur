@@ -11,6 +11,8 @@ app.Router = Backbone.Router.extend({
 
 	home: function() {
 		$( '#main' ).html( '' );
+		var logoutView = new app.logoutView();
+		logoutView.render();
 		new app.filelistView();
 	},
 
@@ -22,6 +24,7 @@ app.Router = Backbone.Router.extend({
 
 	logout: function() {
 		app.auth = {};
+		$( '#main' ).html( '' );
 		$( '#pickfiles' ).hide();
 		localStorage.removeItem( 'access_token' );
 		localStorage.removeItem( 'site_id' );
