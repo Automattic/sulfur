@@ -5,7 +5,7 @@ if ( ! app.auth.accessToken ) { return; }
 var uploader = new plupload.Uploader({
 	runtimes : 'html5,html4',
 	browse_button : 'pickfiles', // you can pass in id...
-	container: document.getElementById('container'), // ... or DOM Element itself
+	container: document.getElementById('file-container'), // ... or DOM Element itself
 	url : 'https://public-api.wordpress.com/rest/v1/sites/' + app.auth.siteID + '/media/new',
 	file_data_name : 'media[]',
 	headers : { Authorization : "Bearer " + app.auth.accessToken },
