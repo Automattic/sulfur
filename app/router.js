@@ -50,6 +50,7 @@ app.Router = Backbone.Router.extend({
 
 		localStorage.setItem( 'access_token', app.auth.accessToken );
 		localStorage.setItem( 'site_id', app.auth.siteID );
+
 		this.navigate( '', {trigger: true} );
 	},
 
