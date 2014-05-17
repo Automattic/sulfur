@@ -5,6 +5,7 @@ app.Router = Backbone.Router.extend({
 		'': 						'home',
 		'authorize': 				'authorize',
 		'access_token=*fragment':	'getAuthFragment',
+		'view/:id':					'viewSingleItem'
 	},
 
 	home: function() {
@@ -37,5 +38,11 @@ app.Router = Backbone.Router.extend({
 		localStorage.setItem( 'site_id', app.auth.siteID );
 
 		this.navigate( '', { trigger: true } );
+	},
+
+	viewSingleItem : function() {
+		console.log( 'viewing single item' );
+
 	}
+
 });
