@@ -45,6 +45,6 @@ app.filelistView = Backbone.View.extend({
 	prependFile: function( file ) {
 		var output = this.renderFile( file );
 
-		this.$el.prepend( output );
+		this.$el.find( 'img:first' ).before( output );
 	}
 });

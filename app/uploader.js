@@ -24,14 +24,13 @@ var uploader = new plupload.Uploader({
 		FilesAdded: function(up, files) {
 			plupload.each(files, function(file) {
 				document.getElementById('filelist').innerHTML += '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
-			});
-			up.start();
-		},
 
-		BeforeUpload: function(up, file) {
-			var newSpinner = new app.spinnerView();
-			app.spinnerViews.push( newSpinner );
-			$('#filegrid').prepend( newSpinner.render().el );
+				var newSpinner = new app.spinnerView();
+				app.spinnerViews.push( newSpinner );
+				$('#filegrid').prepend( newSpinner.render().el );
+			});
+
+			up.start();
 		},
 
 		UploadProgress: function(up, file) {
