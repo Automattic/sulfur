@@ -8,8 +8,7 @@ app.Router = Backbone.Router.extend({
 	},
 
 	home: function() {
-		var helloView = new app.helloView();
-		helloView.render();
+		// Render whatever will be on the home page.
 	},
 
 	authorize: function() {
@@ -18,6 +17,7 @@ app.Router = Backbone.Router.extend({
 	},
 
 	getAuthFragment: function() {
+		// Extract the auth details from the # fragment returned by the API
 		var	response = _.object(
 			_.compact(
 				_.map( location.hash.slice( 1 ).split( '&' ), function( item ) {
@@ -28,8 +28,13 @@ app.Router = Backbone.Router.extend({
 			)
 		);
 
-		localStorage.setItem( 'access_token', decodeURIComponent( response.access_token ) );
-		localStorage.setItem( 'site_id', response.site_id );
+		app.auth = {
+			accessToken: decodeURIComponent( response.access_token ),
+			siteID: response.site_id
+		}
+
+		localStorage.setItem( 'access_token', app.auth.accessToken );
+		localStorage.setItem( 'site_id', app.auth.siteID );
 
 		this.navigate( '', { trigger: true } );
 	}

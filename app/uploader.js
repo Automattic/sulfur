@@ -1,15 +1,14 @@
-var access_token = app.getAccessToken();
-	if ( ! access_token ) { return; }
+var app = app || {};
 
-var site_id = localStorage.getItem( 'site_id' );
+if ( ! app.auth.accessToken ) { return; }
 
 var uploader = new plupload.Uploader({
 	runtimes : 'html5,html4',
 	browse_button : 'pickfiles', // you can pass in id...
 	container: document.getElementById('container'), // ... or DOM Element itself
-	url : 'https://public-api.wordpress.com/rest/v1/sites/' + site_id + '/media/new',
+	url : 'https://public-api.wordpress.com/rest/v1/sites/' + app.auth.siteID + '/media/new',
 	file_data_name : 'media[]',
-	headers : { Authorization : "Bearer " + access_token },
+	headers : { Authorization : "Bearer " + app.auth.accessToken },
 	drop_element : document.getElementById( 'the-body' ),
 	filters : {
 		max_file_size : '10mb',
