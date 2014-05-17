@@ -11,10 +11,8 @@ app.Router = Backbone.Router.extend({
 		// Render whatever will be on the home page.
 		var filelistCollection = new app.filelistCollection();
 		filelistCollection.fetch().done( function() {
-			$.each( filelistCollection.models, function( i, file ) {
-				var fileView = new app.fileView({ model: file });
-				fileView.render();
-			});
+			var filelistView = new app.filelistView();
+			filelistView.render( filelistCollection.models );
 		});
 	},
 

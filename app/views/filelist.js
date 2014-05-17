@@ -3,12 +3,15 @@ var app = app || {};
 app.filelistView = Backbone.View.extend({
 	id: 'filegrid',
 
-	render: function() {
-		this.$el.html(
-			this.template()
-		);
+	render: function( models ) {
+		this.$el.attr( 'id', this.id );
+		$.each( models, _.bind( function( i, file ) {
+			var fileView = new app.fileView({ model: file });
+			var output = fileView.render();
+			this.$el.append( output.el );
+		}, this ) );
 
-		$( '#main' ).html( this.el );
+		$( '#main' ).append( this.$el );
 
 		return this;
 	}

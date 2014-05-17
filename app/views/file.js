@@ -1,15 +1,13 @@
 var app = app || {};
 
 app.fileView = Backbone.View.extend({
+	tagName: 'img',
 	model: app.fileModel,
-	template: _.template( $( '#file-template' ).html() ),
 
 	render: function() {
-		this.$el.html(
-			this.template( this.model.attributes )
-		);
-
-		$( '#main' ).append( this.el );
+		this.$el.attr( 'src', this.model.get( 'link' ) )
+				.attr( 'width', '150' )
+				.attr( 'height', '150' );
 
 		return this;
 	}

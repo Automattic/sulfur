@@ -40,6 +40,7 @@ var uploader = new plupload.Uploader({
 		FileUploaded: function(up, file, response) {
 			var data = jQuery.parseJSON(response.response);
 			$.each( data['media'], function( i, elem ) {
+				// TODO add the new item to the backbone collection
 				$('#filegrid').prepend( '<img src="' + elem.link + '" width="150" height="150" />' );
 			} );
 		},
