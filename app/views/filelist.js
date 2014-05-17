@@ -27,6 +27,9 @@ app.filelistView = Backbone.View.extend({
 			this.appendFile( file );
 		}, this ) );
 
+
+		$( '#pickfiles' ).show();
+
 		return this;
 	},
 

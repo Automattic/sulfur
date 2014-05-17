@@ -15,12 +15,14 @@ app.Router = Backbone.Router.extend({
 	},
 
 	authorize: function() {
+		$( '#pickfiles' ).hide();
 		var authorizationView = new app.authorizationView();
 		authorizationView.render();
 	},
 
 	logout: function() {
 		app.auth = {};
+		$( '#pickfiles' ).hide();
 		localStorage.removeItem( 'access_token' );
 		localStorage.removeItem( 'site_id' );
 		this.navigate( 'authorize', { trigger: true, replace: true } );
@@ -49,6 +51,7 @@ app.Router = Backbone.Router.extend({
 	},
 
 	viewSingleItem : function( id ) {
+		$( '#pickfiles' ).hide();
 		var singleItem = new app.fileModel({ id: id });
 		singleItem.fetch().done( function() {
 			var singleItemView = new app.singleView({ model: singleItem });

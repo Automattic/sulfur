@@ -30,3 +30,7 @@ body#the-body.dragged::after {
 	display: block;
 	margin: 25px auto;
 }
+
+#pickfiles {
+	display: none;
+}
