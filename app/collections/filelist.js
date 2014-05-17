@@ -1,0 +1,9 @@
+var app = app || {};
+
+app.filelistCollection = Backbone.Collection.extend( {
+	model: app.fileModel,
+	url: 'https://public-api.wordpress.com/rest/v1/sites/' + app.auth.siteID + '/media/',
+	parse: function( response ) {
+		return response.media;
+	}
+} );
