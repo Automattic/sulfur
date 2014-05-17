@@ -1,13 +1,14 @@
 var app = app || {};
 
 app.pickerView = Backbone.View.extend( {
-	tagName: 'a',
-	id: 'pickfiles',
+	id: 'picker',
+	template: _.template( $( '#picker-template' ).html() ),
 
 	render: function() {
 		this.$el.attr( 'id', this.id )
-				.attr( 'href', '' )
-				.html( '[Select files]' );
+				.html(
+					this.template()
+				);
 
 		return this;
 	}
