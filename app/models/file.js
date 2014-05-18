@@ -25,11 +25,11 @@ define([
 				var metadata = this.get('metadata');
 				src = this.get( 'link' ).substring( 0, this.get( 'link' ).lastIndexOf( '/' ) ) + '/' + metadata.thumb;
 			} else if ( 'audio' == type ) {
-				// todo audio default
+				src = '/images/place-audio.png';
 			} else if ( 'document' == type ) {
-				// todo document default
+				src = '/images/place-doc.png';
 			} else {
-				// todo 'other' default
+				src = '/images/place-other.png';
 			}
 
 			return src;
