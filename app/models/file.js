@@ -17,6 +17,8 @@ define([
 			var type = this.getType();
 			var src = '';
 
+			console.log(type);
+
 			if ( 'image' == type ) {
 				src = this.get( 'link' );
 				if ( ! this.get( 'pending' ) )
@@ -47,6 +49,9 @@ define([
 				return 'audio';
 			else if ( ext in { 'doc':'', 'docx': '', 'pdf': '', 'ppt':'', 'odt':'', 'pptx':'', 'pps':'', 'ppsx':'', 'xls':'', 'xlsx':'', 'key':'' } )
 				return 'document';
+			else if ( ext.slice( 0, 10 ) == 'data:image' ) {
+				return 'image';
+			}
 			else
 				return 'other';
 		},
