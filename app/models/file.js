@@ -7,7 +7,6 @@ define([
 		pending: false,
 
 		url: function () {
-			console.log('...');
 			return 'https://public-api.wordpress.com/rest/v1/sites/' + app.auth.siteID + '/media/' + this.get( 'id' );
 		},
 
