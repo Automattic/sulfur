@@ -12,11 +12,13 @@ app.Router = Backbone.Router.extend({
 	},
 
 	home: function() {
+		// So we access this instance in the uploader.
 		app.filelistViewInstance = new app.filelistView();
+
 		this.renderViews( [
-			new app.logoutView(),
-			app.filelistViewInstance,
-			new app.pickerView()
+			new app.headerView(),
+			new app.pickerView(),
+			app.filelistViewInstance
 		] );
 	},
 

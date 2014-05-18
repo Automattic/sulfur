@@ -3,6 +3,7 @@ var app = app || {};
 app.fileView = Backbone.View.extend({
 	tagName: 'img',
 	model: app.fileModel,
+
 	events: {
 		'click' : 'loadSingleView'
 	},
