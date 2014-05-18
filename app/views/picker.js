@@ -82,6 +82,8 @@ define([
 
 			} );
 
+			// TODO -- this shouldn't be in this view, and in app.js
+
 			$( document ).on( 'dragover', '#the-body', function () {
 				$( '#the-body' ).addClass( 'dragged' );
 			} );
