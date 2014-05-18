@@ -7,6 +7,7 @@ define([
 	app.filelistView = Backbone.View.extend( {
 		id: 'filegrid',
 		isLoadingMore: false,
+		hasRenderedOnce: false,
 
 		events: {
 			'click .more': 'more'
@@ -32,6 +33,11 @@ define([
 		},
 
 		render: function () {
+			if( ! this.hasRenderedOnce ) {
+				this.hasRenderedOnce = true;
+				return this;
+			}
+
 			this.$el.html( '' );
 
 			$.each( this.collection.models, _.bind( function ( i, file ) {
