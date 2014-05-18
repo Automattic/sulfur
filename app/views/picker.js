@@ -90,6 +90,10 @@ define([
 						} );
 					},
 
+					UploadComplete: function ( up, file ) {
+						up.splice();
+					},
+
 					Error: function ( up, err ) {
 						document.getElementById( 'console' ).innerHTML += "\nError #" + err.code + ": " + err.message;
 					}
