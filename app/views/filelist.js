@@ -79,7 +79,7 @@ define([
 
 					$( 'html, body' ).animate( {
 						scrollTop: $( 'img:last' ).offset().top
-					}, 1000 );
+					}, 500 );
 				}, this )
 			} );
 		},

@@ -14,6 +14,7 @@ define([
 
 		initialize: function() {
 			this.listenTo( this.model, 'change', _.bind( this.togglePending, this ) );
+			this.listenTo( this.model, 'change:link', _.bind( this.render, this ) );
 		},
 
 		render: function() {

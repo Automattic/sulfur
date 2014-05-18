@@ -24,7 +24,11 @@ define([
 				this.template( data )
 			);
 
-			this.$el.find( '.modal' ).modal( 'show' );
+			this.$el.find( '.modal' )
+				.modal( 'show' )
+				.on( 'hidden.bs.modal', function() {
+					app.router.navigate( 'm', { trigger: false } );
+				} );
 
 			return this;
 		},

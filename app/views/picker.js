@@ -82,12 +82,11 @@ define([
 							var newFile = app.filelistViewInstance.collection.get( cid );
 							newFile.set( elem );
 							newFile.set( { pending: false } );
-							if ( -1 == $.inArray( file.type, ['image/jpeg', 'image/jpg', 'image/png'] ) ) {
-								// TODO: swap thumbnails for the new one
-								// newFile.model.set( 'link', elem.link );
-								console.log(newFile);
-							}
 						} );
+					},
+
+					UploadComplete: function ( up, file ) {
+						up.splice();
 					},
 
 					Error: function ( up, err ) {
