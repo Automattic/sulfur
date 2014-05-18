@@ -112,7 +112,6 @@ body#the-body.dragged::after {
 
 #filegrid img{
 	padding: .35em;
-	transition: all 0.25s ease;
 }
 
 #filegrid img:hover{
