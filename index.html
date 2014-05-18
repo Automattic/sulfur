@@ -9,6 +9,7 @@
     <!-- Bootstrap -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,7 +32,10 @@
 
     <script type="text/template" id="user-template">
         <img id="avatar" src="<%- avatar_URL %>" width="65" height="65" />
-        <p id="name"><%- blog %><br /><%- display_name %></p>
+
+        <div id="name"><%- display_name %></div>
+        <div id="blog"><a href="<%- blog %>"><%- blog %></a></div>
+
         <button type="button" class="btn btn-default btn-xs logout-button"><a href="#logout" id="logout">Log Out</a></button>
         <div class='clear'></div>
     </script>
@@ -88,7 +92,7 @@
     </script>
 
     <script type="text/template" id="picker-template">
-        <button id="pickfiles" class="btn btn-primary btn-md">Upload Files</button>
+        <button id="pickfiles" class="btn btn-info btn-lg">Upload Files</button>
     </script>
 
     <!-- Load Everything through requirejs -->

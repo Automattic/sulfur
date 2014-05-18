@@ -1,8 +1,9 @@
 body {
 	background: #f6f9fa;
 	color:#384047;
-	position: relative;
+	font-family: 'Varela Round', sans-serif;
 	min-height: 300px;
+	position: relative;
 }
 
 body#the-body.dragged {
@@ -33,40 +34,52 @@ body#the-body.dragged::after {
 	margin: 25px auto;
 }
 
+#main{
+	padding:0 0 2em 0;
+}
+
 /* Header */ 
 
 #header{
-	background:#F29F05;
+	//background:#F29F05;
+	background:#323b43;
 	padding:1em 0;
 }
 
 #header #userdetails,
 #header h1{
-	color:#A63F03;
+	//color:#A63F03;
+	color:#ffe295;
 	display:inline-block;
 	vertical-align:middle;
 }
 
 #header #userdetails{
-	width:34%;
+	color:#F5CB5D;
 	float:right;
+	width:34%;
 }
 
 #header h1{
-	width:55%;
 	float:left;
+	font-size: 4em;
 	margin:0;
+	width:55%;
 }
 
 #header #userdetails #avatar{
-	border: 1px solid #fff;
+	border: 2px solid #eee;
 	float:left;
-	margin-right: .5em;
+	margin-right: .75em;
 }
 
 #header #userdetails #name{
-	font-weight:bold;
-	margin:0;
+	font-size: 1.2em;
+}
+
+#header #userdetails #blog{
+	color: #cfaf5b;
+	font-size:.8em;
 }
 
 .header-inner,
@@ -84,12 +97,11 @@ body#the-body.dragged::after {
 /* Picker */ 
 
 #picker{
-	height: 65px;
-	padding:1em 0;
+	padding:2em 0;
 }
 
 #picker button{
-	float:right;
+	width:100%;
 }
 
 #pickfiles {
@@ -98,17 +110,13 @@ body#the-body.dragged::after {
 
 /* File List */ 
 
-#filegrid img.video:before{
-	content:  "\2713 ";
-}
-
 #filegrid img{
 	padding: .35em;
 	transition: all 0.25s ease;
 }
 
 #filegrid img:hover{
-	background:#F2DBAE;
+	background:#ffe7a9;
 	cursor:pointer;
 	padding: .25em;
 }
@@ -206,4 +214,11 @@ img.pending {
 	#header h1{
 		width:48%;
 	}
+	
+	#header #userdetails #avatar {
+		border: 1px solid #eee;
+		height: 25px;
+		margin:0 0 .25em .25em;
+		width: 25px;
+		}
 }
