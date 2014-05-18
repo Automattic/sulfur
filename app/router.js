@@ -2,6 +2,7 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
+	'bootstrap',
 	'collections/filelist',
 	'models/file',
 	'views/userdetails',

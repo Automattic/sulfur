@@ -91,7 +91,18 @@ body#the-body.dragged::after {
 
 /* File List */ 
 
-.more{
+#filegrid img{
+	padding: .35em;
+	transition: all 0.25s ease;
+}
+
+#filegrid img:hover{
+	background:#F2DBAE;
+	cursor:pointer;
+	padding: .25em;
+}
+
+button.more{
 	display: block;
 	margin-top: 1em;
 	width: 100%;
@@ -104,6 +115,26 @@ body#the-body.dragged::after {
 	display: inline-block;
 */}
 
+@media (min-width: 768px) {
+	.modal-dialog {
+		width: 800px;
+	}
+}
+
+.modal-body img {
+	float: left;
+	width: 500px;
+	min-height: 250px;
+}
+
+.modal-body aside {
+	float: left;
+	margin-left: 20px;
+	width: 200px;
+}
+
+.modal-body aside input {
+	width: 200px;
 
 @media only screen and (max-width: 770px) {
 	#header #userdetails{

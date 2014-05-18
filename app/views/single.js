@@ -1,7 +1,9 @@
 define([
 	'jquery',
 	'underscore',
-	'backbone'
+	'backbone',
+	'bootstrap',
+	'models/file'
 ], function( $, _, Backbone ) {
 	app.singleView = Backbone.View.extend( {
 		model 	: app.fileModel,
@@ -17,8 +19,11 @@ define([
 				this.template( data )
 			);
 
-			this.$el.find( '.single-image-actions .single-image-delete' ).click( function() {
+			this.$el.find( '.modal' ).modal( 'show' );
+
+			this.$el.find( '.btn-danger' ).click( function() {
 				if ( confirm( 'Are you sure you want to delete this image?' ) ) {
+					that.$el.find( '.modal' ).modal( 'hide' );
 					that.model.destroy( {
 						success: function( model, response ) {
 							app.router.navigate( '', { trigger: true } );
@@ -27,6 +32,10 @@ define([
 				}
 				return false;
 			} );
+
+			this.$el.find( '.modal' ).on( 'hidden.bs.modal', function() {
+				app.router.navigate( '', { trigger: true } );
+			});
 
 			return this;
 		}

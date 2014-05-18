@@ -41,22 +41,53 @@
     </script>
 
     <script type="text/template" id="single-template">
-      <a href="/">Go back</a>
-      <div class="single-image">
-            <a href="<%- link %>" target="_blank"><img src="<%- preview %>" width="500"></a>
-            <p>Image ID: <%- id %></p>
-            <p>Uploaded on: <%- date %></p>
-            <p>Title: <%- title %></p>
-            <p>Caption: <%- caption %></p>
-            <p>Description: <%- description %></p>
-            <ul class="single-image-actions">
-                <li><a href='#' class='single-image-delete'>Delete Image</a></li>
-            </ul>
-      </div>
+        <div class="modal fade" id="single-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                    <div class="modal-body">
+                        <img src="<%- link %>?w=500" width="500">
+                        <aside>
+                            <div><h4>Title</h4> <%- title ? title : 'n/a' %></div>
+                            <div><h4>Caption</h4> <%- caption ? caption : 'n/a' %></div>
+                            <div><h4>Description</h4> <%- description ? description : 'n/a' %></div>
+                            <div><h4>Image ID</h4> <%- id %></div>
+
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#general" data-toggle="tab">General</a></li>
+                                <li><a href="#camera" data-toggle="tab">Camera</a></li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="general">
+                                    <div><h4>Size</h4> <%- metadata.width %> x <%- metadata.height %></div>
+                                    <div><h4>Uploaded On</h4> <%- date %></div>
+                                    <div><h4>Link</h4><input type="text" value="<%- link %>" readonly="readonly"/></div>
+                                </div>
+                                <div class="tab-pane" id="camera">
+                                    <div><h4>Camera</h4> <%- metadata.image_meta.camera ? metadata.image_meta.camera : 'n/a' %></div>
+                                    <div><h4>Aperture</h4> <%- metadata.image_meta.aperture ? metadata.image_meta.aperture : 'n/a' %></div>
+                                    <div><h4>ISO</h4> <%- metadata.image_meta.iso ? metadata.image_meta.iso : 'n/a' %></div>
+                                    <div><h4>Focal Length</h4> <%- metadata.image_meta.focal_length ? metadata.image_meta.focal_length : 'n/a' %></div>
+                                    <div><h4>Shutter Speed</h4> <%- metadata.image_meta.shutter_speed ? metadata.image_meta.shutter_speed : 'n/a' %></div>
+                                </div>
+                            </div>
+
+                        </aside>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </script>
 
     <script type="text/template" id="picker-template">
-        <button id="pickfiles" class="btn btn-primary btn-md">Select Files</button>
+        <button id="pickfiles" class="btn btn-primary btn-md">Upload Files</button>
     </script>
 
     <!-- Load Everything through requirejs -->
