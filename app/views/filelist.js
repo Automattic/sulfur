@@ -91,6 +91,9 @@ define([
 				success: function() {
 					self.$el.append( '<button type="button" class="btn btn-default btn-md more">View More</button>' );
 					self.isLoadingMore = false;
+					$( 'html, body' ).animate( {
+						scrollTop: $( '.more' ).offset().top
+					}, 2000 );
 				}
 			} );
 		}
