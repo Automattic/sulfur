@@ -13,16 +13,41 @@ define([
 		},
 
 		getPreview: function() {
-			var metadata = this.get('metadata');
-			if ( 'undefined' == typeof metadata || 'undefined' == typeof metadata.thumb ) {
-				var src = this.get( 'link' );
+			var type = this.getType();
+			var src = '';
+
+			if ( 'image' == type ) {
+				src = this.get( 'link' );
 				if ( ! this.get( 'pending' ) )
 					src = src + '?w=300&h=300&resize=300,300';
+			} else if ( 'video' == type ) {
+				var metadata = this.get('metadata');
+				src = this.get( 'link' ).substring( 0, this.get( 'link' ).lastIndexOf( '/' ) ) + '/' + metadata.thumb;
+			} else if ( 'audio' == type ) {
+				// todo audio default
+			} else if ( 'document' == type ) {
+				// todo document default
 			} else {
-				// we need a better way to just get the thumb URL
-				var src = this.get( 'link' ).substring( 0, this.get( 'link' ).lastIndexOf( '/' ) ) + '/' + metadata.thumb;
+				// todo 'other' default
 			}
+
 			return src;
+		},
+
+		// the api doesn't currently return type - we should add that later so we don't need to do logic here to figure it out
+		// not perfect, but works for now
+		getType: function() {
+			var ext = this.get( 'link' ).split('.').pop();
+			if ( ext in { 'jpg':'', 'jpeg':'', 'gif':'', 'png':'' } )
+				return 'image';
+			else if ( ext in { 'mov':'','ogv':'', 'mp4':'', 'm4v':'', 'wmv':'', 'avi':'', 'mpg':'', '3gp':'', '3g2':'' } )
+				return 'video';
+			else if ( ext in { 'mp3':'', 'm4a':'', 'wav':'', 'ogg':'' } )
+				return 'audio';
+			else if ( ext in { 'doc':'', 'docx': '', 'pdf': '', 'ppt':'', 'odt':'', 'pptx':'', 'pps':'', 'ppsx':'', 'xls':'', 'xlsx':'', 'key':'' } )
+				return 'document';
+			else
+				return 'other';
 		},
 
 		destroyUrl: function () {
@@ -40,9 +65,9 @@ define([
 		},
 
 		parse: function( response ) {
-			response.metadata.image_meta.shutter_speed = response.metadata.image_meta.shutter_speed ? this.formatShutterSpeed( response.metadata.image_meta.shutter_speed ) : response.metadata.image_meta.shutter_speed;
-			response.metadata.image_meta.aperture = response.metadata.image_meta.aperture ? 'f/' + response.metadata.image_meta.aperture : response.metadata.image_meta.aperture;
-			response.metadata.image_meta.focal_length = response.metadata.image_meta.focal_length ? response.metadata.image_meta.focal_length + ' mm' : response.metadata.image_meta.focal_length;
+		//	response.metadata.image_meta.shutter_speed = response.metadata.image_meta.shutter_speed ? this.formatShutterSpeed( response.metadata.image_meta.shutter_speed ) : response.metadata.image_meta.shutter_speed;
+		//	response.metadata.image_meta.aperture = response.metadata.image_meta.aperture ? 'f/' + response.metadata.image_meta.aperture : response.metadata.image_meta.aperture;
+		//	response.metadata.image_meta.focal_length = response.metadata.image_meta.focal_length ? response.metadata.image_meta.focal_length + ' mm' : response.metadata.image_meta.focal_length;
 			return response;
 		},
 
