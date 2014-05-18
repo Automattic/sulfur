@@ -32,6 +32,7 @@
 
     <script type="text/template" id="user-template">
         <img id="avatar" src="<%- avatar_URL %>" width="65" height="65" />
+
         <div id="name"><%- display_name %></div>
         <div id="blog"><%- blog %></div>
         <button type="button" class="btn btn-dark btn-xs logout-button"><a href="#logout" id="logout">Log Out</a></button>
@@ -56,18 +57,25 @@
                             <div class="main-info caption"><h4>Caption</h4> <%- caption ? caption : 'No caption added' %></div>
                             <div class="main-info description"><h4>Description</h4> <%- description ? description : 'No description added' %></div>
                             <div class="main-info image-id"><h4>Image ID</h4> <%- id %></div>
-                            
+
+                            <% if ( metadata.image_meta ) { %>
                             <ul class="nav nav-tabs nav-justified">
                                 <li class="active"><a href="#general" data-toggle="tab"><span class="glyphicon glyphicon-info-sign"></span>General</a></li>
                                 <li><a href="#camera" data-toggle="tab"><span class="glyphicon glyphicon-camera"></span>Camera</a></li>
                             </ul>
+                            <% } %>
 
                             <!-- Tab panes -->
+                            <% if ( metadata.image_meta ) { %>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="general">
-                                    <div class="gen-info size"><h4>Size</h4> <%- metadata.width %> x <%- metadata.height %></div>
+                            <% } %>
+                                    <% if ( metadata.image_meta ) { %>
+                                        <div class="gen-info size"><h4>Size</h4> <%- metadata.width %> x <%- metadata.height %></div>
+                                    <% } %>
                                     <div class="gen-info date"><h4>Uploaded On</h4> <%- date %></div>
                                     <div class="gen-info link"><h4>Link</h4><input type="text" value="<%- link %>" readonly="readonly"/></div>
+                                <% if ( metadata.image_meta ) { %>
                                 </div>
                                 <div class="tab-pane" id="camera">
                                     <div class="cam-info camera"><h4>Camera</h4> <%- metadata.image_meta.camera ? metadata.image_meta.camera : 'n/a' %></div>
@@ -77,6 +85,7 @@
                                     <div class="cam-info focal"><h4>Focal Length</h4> <%- metadata.image_meta.focal_length ? metadata.image_meta.focal_length : 'n/a' %></div>
                                 </div>
                             </div>
+                            <% } %>
 
                         </aside>
                         <div class="clearfix"></div>
@@ -90,7 +99,7 @@
     </script>
 
     <script type="text/template" id="picker-template">
-        <button id="pickfiles" class="btn btn-info btn-lg">Upload Files</button>
+        <button id="pickfiles" class="btn btn-info btn-lg">Drag files here or click to upload</button>
     </script>
 
     <!-- Load Everything through requirejs -->

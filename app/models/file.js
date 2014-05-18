@@ -1,8 +1,9 @@
 define([
 	'jquery',
 	'underscore',
-	'backbone'
-], function( $, _, Backbone ) {
+	'backbone',
+	'moment'
+], function( $, _, Backbone, moment ) {
 	app.fileModel = Backbone.Model.extend( {
 		defaults: {
 			pending: false
@@ -65,9 +66,12 @@ define([
 		},
 
 		parse: function( response ) {
-		//	response.metadata.image_meta.shutter_speed = response.metadata.image_meta.shutter_speed ? this.formatShutterSpeed( response.metadata.image_meta.shutter_speed ) : response.metadata.image_meta.shutter_speed;
-		//	response.metadata.image_meta.aperture = response.metadata.image_meta.aperture ? 'f/' + response.metadata.image_meta.aperture : response.metadata.image_meta.aperture;
-		//	response.metadata.image_meta.focal_length = response.metadata.image_meta.focal_length ? response.metadata.image_meta.focal_length + ' mm' : response.metadata.image_meta.focal_length;
+			if ( response.metadata.image_meta ) {
+				response.metadata.image_meta.shutter_speed = response.metadata.image_meta.shutter_speed ? this.formatShutterSpeed( response.metadata.image_meta.shutter_speed ) : response.metadata.image_meta.shutter_speed;
+				response.metadata.image_meta.aperture = response.metadata.image_meta.aperture ? 'f/' + response.metadata.image_meta.aperture : response.metadata.image_meta.aperture;
+				response.metadata.image_meta.focal_length = response.metadata.image_meta.focal_length ? response.metadata.image_meta.focal_length + ' mm' : response.metadata.image_meta.focal_length;
+			}
+			response.date = moment( response.date ).format( 'LLLL' );
 			return response;
 		},
 

@@ -14,7 +14,7 @@ define([
 	'views/single',
 ], function( $, _, Backbone, Router ) {
 
-	app.Router = Backbone.Router.extend({
+	app.Router = Backbone.Router.extend( {
 		currentViews: [],
 
 		routes: {
@@ -26,6 +26,10 @@ define([
 		},
 
 		home: function() {
+			if ( app.filelistViewInstance ) {
+				return;
+			}
+
 			// So we access this instance in the uploader.
 			app.filelistViewInstance = new app.filelistView();
 
@@ -51,20 +55,29 @@ define([
 		},
 
 		viewSingleItem: function ( id ) {
+			// Remove existing single view items.
+			if ( app.singleItemViewInstance ) {
+				app.singleItemViewInstance.remove();
+			}
+
 			var singleItem = new app.fileModel( { id: id } );
 
 			singleItem.fetch().done( _.bind( function () {
+				app.singleItemViewInstance = new app.singleView( { model: singleItem } );
+
 				this.renderViews( [
-					new app.singleView( { model: singleItem } )
-				] );
+					app.singleItemViewInstance
+				], false );
 			}, this ) );
 		},
 
-		renderViews: function ( views ) {
+		renderViews: function ( views, removeCurrentViews ) {
 			// Remove any current views
-			if ( this.currentViews.length ) {
+			if ( _.isUndefined( removeCurrentViews ) && this.currentViews.length ) {
 				$.each( this.currentViews, function ( i, view ) {
-					view.remove();
+					if ( typeof view.remove == 'function' ) {
+						view.remove();
+					}
 				} );
 			}
 
@@ -72,13 +85,14 @@ define([
 				return false;
 			}
 
-			$.each( views, function ( i, view ) {
+			$.each( views, _.bind( function ( i, view ) {
 				var el = view.render().el;
 
 				$( '#main' ).append( el );
-			} );
 
-			this.currentViews = views;
+				this.currentViews.push( view );
+			}, this ) );
+
 			return this;
 		},
 
