@@ -41,14 +41,12 @@ body#the-body.dragged::after {
 /* Header */ 
 
 #header{
-	//background:#F29F05;
 	background:#323b43;
 	padding:1em 0;
 }
 
 #header #userdetails,
 #header h1{
-	//color:#A63F03;
 	color:#ffe295;
 	display:inline-block;
 	vertical-align:middle;
@@ -74,6 +72,7 @@ body#the-body.dragged::after {
 }
 
 #header #userdetails #name{
+	color: #ffe295;
 	font-size: 1.2em;
 }
 
@@ -92,6 +91,19 @@ body#the-body.dragged::after {
 
 .logout-button {
 	margin-top:4px;
+	background: #717a84;
+}
+
+.logout-button:hover{
+	background: #616871;
+}
+
+.logout-button a{
+	color:#eee;
+}
+
+.logout-button a:hover{
+	text-decoration: none;
 }
 
 /* Picker */ 
@@ -134,6 +146,10 @@ button.more{
 img.pending {
 	opacity: 0.4;
 	filter: alpha(opacity=40);
+}
+
+img.video-type:before{
+	content:'\25B6';
 }
 
 /*	Modal */
