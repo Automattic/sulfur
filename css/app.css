@@ -91,7 +91,18 @@ body#the-body.dragged::after {
 
 /* File List */ 
 
-.more{
+#filegrid img{
+	padding: .35em;
+	transition: all 0.25s ease;
+}
+
+#filegrid img:hover{
+	background:#F2DBAE;
+	cursor:pointer;
+	padding: .25em;
+}
+
+button.more{
 	display: block;
 	margin-top: 1em;
 	width: 100%;
