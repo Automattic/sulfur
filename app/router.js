@@ -15,8 +15,6 @@ define([
 ], function( $, _, Backbone, Router ) {
 
 	app.Router = Backbone.Router.extend({
-		currentViews: [],
-
 		routes: {
 			'': 						'home',
 			'authorize': 				'authorize',
@@ -26,6 +24,10 @@ define([
 		},
 
 		home: function() {
+			if ( app.filelistViewInstance ) {
+				return;
+			}
+
 			// So we access this instance in the uploader.
 			app.filelistViewInstance = new app.filelistView();
 
@@ -51,23 +53,23 @@ define([
 		},
 
 		viewSingleItem: function ( id ) {
+			// Remove existing single view items.
+			if ( app.singleItemViewInstance ) {
+				app.singleItemViewInstance.remove();
+			}
+
 			var singleItem = new app.fileModel( { id: id } );
 
 			singleItem.fetch().done( _.bind( function () {
+				app.singleItemViewInstance = new app.singleView( { model: singleItem } );
+
 				this.renderViews( [
-					new app.singleView( { model: singleItem } )
+					app.singleItemViewInstance
 				] );
 			}, this ) );
 		},
 
 		renderViews: function ( views ) {
-			// Remove any current views
-			if ( this.currentViews.length ) {
-				$.each( this.currentViews, function ( i, view ) {
-					view.remove();
-				} );
-			}
-
 			if ( !views ) {
 				return false;
 			}
@@ -78,7 +80,6 @@ define([
 				$( '#main' ).append( el );
 			} );
 
-			this.currentViews = views;
 			return this;
 		},
 

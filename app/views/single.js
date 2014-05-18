@@ -6,6 +6,7 @@ define([
 	'models/file'
 ], function( $, _, Backbone ) {
 	app.singleView = Backbone.View.extend( {
+		id		: 'single',
 		model 	: app.fileModel,
 		template: _.template( $( '#single-template' ).html() ),
 
