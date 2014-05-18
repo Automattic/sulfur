@@ -55,7 +55,17 @@ define([
 								app.filelistViewInstance.collection.add( newFile );
 							};
 
-							thumbnail.load( file.getSource() );
+							// mOxie doesn't support anything other than jpg and png
+							if( -1 != $.inArray( file.type, ['image/jpeg', 'image/jpg', 'image/png' ] ) ) {
+								thumbnail.load( file.getSource() );
+							} else {
+								var newFile = new app.fileModel( {
+										'id': file.id,
+										'link': 'images/spinner.gif'
+									} );
+								newFile.set( { pending: true } );
+								app.filelistViewInstance.collection.add( newFile );
+							}
 
 						} );
 
@@ -72,6 +82,11 @@ define([
 							var newFile = app.filelistViewInstance.collection.get( cid );
 							newFile.set( elem );
 							newFile.set( { pending: false } );
+							if ( -1 == $.inArray( file.type, ['image/jpeg', 'image/jpg', 'image/png'] ) ) {
+								// TODO: swap thumbnails for the new one
+								// newFile.model.set( 'link', elem.link );
+								console.log(newFile);
+							}
 						} );
 					},
 
