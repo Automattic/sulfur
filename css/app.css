@@ -41,3 +41,25 @@ body#the-body.dragged::after {
 	vertical-align: middle;
 	display: inline-block;
 */}
+
+@media (min-width: 768px) {
+	.modal-dialog {
+		width: 800px;
+	}
+}
+
+.modal-body img {
+	float: left;
+	width: 500px;
+	min-height: 250px;
+}
+
+.modal-body aside {
+	float: left;
+	margin-left: 20px;
+	width: 200px;
+}
+
+.modal-body aside input {
+	width: 200px;
+}
