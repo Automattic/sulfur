@@ -83,7 +83,7 @@ define([
 
 		more: function() {
 			var $more = this.$( '.more' );
-			$more.remove();
+			$more.fadeOut();
 
 			this.isLoadingMore = true;
 			var self = this;
@@ -95,6 +95,7 @@ define([
 				data: data,
 				add: true,
 				success: function() {
+					$more.remove();
 					self.$el.append( '<button type="button" class="btn btn-default btn-md more">View More</button>' );
 					self.isLoadingMore = false;
 					$( 'html, body' ).animate( {
