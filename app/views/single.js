@@ -33,6 +33,10 @@ define([
 				return false;
 			} );
 
+			this.$el.find( '.modal' ).on( 'hidden.bs.modal', function() {
+				app.router.navigate( '', { trigger: true } );
+			});
+
 			return this;
 		}
 	} );
