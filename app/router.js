@@ -14,7 +14,9 @@ define([
 	'views/single',
 ], function( $, _, Backbone, Router ) {
 
-	app.Router = Backbone.Router.extend({
+	app.Router = Backbone.Router.extend( {
+		currentViews: [],
+
 		routes: {
 			'': 						'home',
 			'authorize': 				'authorize',
@@ -65,20 +67,31 @@ define([
 
 				this.renderViews( [
 					app.singleItemViewInstance
-				] );
+				], false );
 			}, this ) );
 		},
 
-		renderViews: function ( views ) {
+		renderViews: function ( views, removeCurrentViews ) {
+			// Remove any current views
+			if ( _.isUndefined( removeCurrentViews ) && this.currentViews.length ) {
+				$.each( this.currentViews, function ( i, view ) {
+					if ( typeof view.remove == 'function' ) {
+						view.remove();
+					}
+				} );
+			}
+
 			if ( !views ) {
 				return false;
 			}
 
-			$.each( views, function ( i, view ) {
+			$.each( views, _.bind( function ( i, view ) {
 				var el = view.render().el;
 
 				$( '#main' ).append( el );
-			} );
+
+				this.currentViews.push( view );
+			}, this ) );
 
 			return this;
 		},
