@@ -10,6 +10,10 @@ define([
 		model 	: app.fileModel,
 		template: _.template( $( '#single-template' ).html() ),
 
+		events: {
+			'click .btn-danger': 'confirmDelete',
+		},
+
 		render: function() {
 			var that = this;
 
@@ -22,25 +26,20 @@ define([
 
 			this.$el.find( '.modal' ).modal( 'show' );
 
-			// TODO -- this should all be on events: {}
-
-			this.$el.find( '.btn-danger' ).click( function() {
-				if ( confirm( 'Are you sure you want to delete this image?' ) ) {
-					that.$el.find( '.modal' ).modal( 'hide' );
-					that.model.destroy( {
-						success: function( model, response ) {
-							app.router.navigate( '', { trigger: true } );
-						}
-					} );
-				}
-				return false;
-			} );
-
-			this.$el.find( '.modal' ).on( 'hidden.bs.modal', function() {
-				app.router.navigate( '', { trigger: true } );
-			});
-
 			return this;
+		},
+
+		confirmDelete: function() {
+			if ( confirm( 'Are you sure you want to delete this image?' ) ) {
+				this.$el.find( '.modal' ).modal( 'hide' );
+				this.model.destroy( {
+					success: function( model, response ) {
+						app.router.navigate( '', { trigger: true } );
+					}
+				} );
+			}
+
+			return false;
 		}
 	} );
 
