@@ -1,4 +1,5 @@
 body {
+	background: #f6f9fa;
 	position: relative;
 	min-height: 300px;
 }
@@ -31,8 +32,69 @@ body#the-body.dragged::after {
 	margin: 25px auto;
 }
 
+/* Header */ 
+
+#header{
+	background:#F29F05;
+	padding:1em 0;
+}
+
+#header #userdetails,
+#header h1{
+	color:#A63F03;
+	display:inline-block;
+	vertical-align:middle;
+}
+
+#header #userdetails{
+	width:22%;
+}
+
+#header h1{
+	width:75%;
+	margin:0;
+}
+
+#header #userdetails #avatar{
+	border: 1px solid #fff;
+	float:left;
+	margin-right: .5em;
+}
+
+#header #userdetails #name{
+	font-weight:bold;
+	margin:0;
+}
+
+.header-inner,
+#filegrid,
+#picker{
+	margin: 0 auto;
+	max-width: 1050px;
+	width: 100%;
+}
+
+/* Picker */ 
+
+#picker{
+	height: 65px;
+	padding:1em 0;
+}
+
+#picker button{
+	float:right;
+}
+
 #pickfiles {
 	display: none;
+}
+
+/* File List */ 
+
+.more{
+	display: block;
+	margin-top: 1em;
+	width: 100%;
 }
 
 .pending {
@@ -41,3 +103,14 @@ body#the-body.dragged::after {
 	vertical-align: middle;
 	display: inline-block;
 */}
+
+
+@media only screen and (max-width: 770px) {
+	#header #userdetails{
+		width:48%;
+	}
+	
+	#header h1{
+		width:48%;
+	}
+}

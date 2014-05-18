@@ -33,7 +33,7 @@ define([
 				this.appendFile( file );
 			}, this ) );
 
-			this.$el.append( '<a class="button more">More</a>' );
+			this.$el.append( '<button type="button" class="btn btn-default btn-md more">View More</button>' );
 
 			$( '#pickfiles' ).show();
 
@@ -70,7 +70,7 @@ define([
 				data: data,
 				add: true,
 				success: function() {
-					self.$el.append( '<a class="button more">More</a>' );
+					self.$el.append( '<button type="button" class="btn btn-default btn-md more">View More</button>' );
 				}
 			} );
 		}
