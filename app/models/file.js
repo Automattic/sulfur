@@ -17,8 +17,6 @@ define([
 			var type = this.getType();
 			var src = '';
 
-			console.log(type);
-
 			if ( 'image' == type ) {
 				src = this.get( 'link' );
 				if ( ! this.get( 'pending' ) )
