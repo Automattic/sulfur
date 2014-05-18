@@ -6,11 +6,9 @@ define([
 ], function( $, _, Backbone ) {
 	app.filelistView = Backbone.View.extend( {
 		id: 'filegrid',
-		isLoadingMore: false,
-		hasRenderedOnce: false,
 
 		events: {
-			'click .more': 'more'
+			'click .more': 'loadMore'
 		},
 
 		initialize: function () {
@@ -20,52 +18,23 @@ define([
 			this.collection = new app.filelistCollection();
 
 			// Listen for new files
-			this.listenTo( this.collection, 'reset', _.bind( this.render, this ) );
 			this.listenTo( this.collection, 'add', _.bind( this.addFile, this ) );
-		},
 
-		setLoading: function () {
-			this.$el.html( 'Loading your media library...' );
-		},
-
-		setEmpty: function() {
-			this.$el.html( 'No files found! Upload something :)' );
+			// Check for files status when fetch is done
+			this.listenTo( this.collection, 'fetched', _.bind( this.checkFiles, this ) );
 		},
 
 		render: function () {
-			if( ! this.hasRenderedOnce ) {
-				this.hasRenderedOnce = true;
-				return this;
-			}
-
-			this.$el.html( '' );
-
-			$.each( this.collection.models, _.bind( function ( i, file ) {
-				this.appendFile( file );
-			}, this ) );
-
-			if( 0 === this.collection.models.length ) {
-				this.setEmpty();
-			} else {
-				this.$el.append( '<button type="button" class="btn btn-default btn-md more">View More</button>' );
-			}
-
 			$( '#pickfiles' ).show();
 
 			return this;
 		},
 
-		renderFile: function ( file ) {
-			var fileView = new app.fileView( { model: file } );
-
-			return fileView.render().el;
-		},
-
 		addFile: function( file ) {
-			if ( this.isLoadingMore ) {
-				this.appendFile( file );
-			} else {
+			if ( file.get( 'pending' ) == true ) {
 				this.prependFile( file );
+			} else {
+				this.appendFile( file );
 			}
 		},
 
@@ -81,30 +50,52 @@ define([
 			this.$el.find( 'img:first' ).before( output );
 		},
 
-		more: function() {
-			var $more = this.$( '.more' );
-			$more.fadeOut();
+		renderFile: function ( file ) {
+			var fileView = new app.fileView( { model: file } );
 
-			this.isLoadingMore = true;
-			var self = this;
+			return fileView.render().el;
+		},
+
+		loadMore: function() {
+			this.$el.find( '.more' ).remove();
 
 			var data = {};
 			data.offset = this.$el.find( "img" ).length;
-	
-			this.collection.fetch( { 
+			var self = this;
+
+			this.collection.fetch( {
 				data: data,
 				add: true,
-				success: function() {
-					$more.remove();
-					self.$el.append( '<button type="button" class="btn btn-default btn-md more">View More</button>' );
-					self.isLoadingMore = false;
-					$( 'html, body' ).animate( {
-						scrollTop: $( '.more' ).offset().top
-					}, 2000 );
-				}
-			} );
-		}
+				success: _.bind( function() {
 
+					if ( self.collection.found > self.$el.find( "img" ).length ) {
+						this.$el.append( '<button type="button" class="btn btn-default btn-md more">View More</button>' );
+					}
+
+					$( 'html, body' ).animate( {
+						scrollTop: $( 'img:last' ).offset().top
+					}, 1000 );
+				}, this )
+			} );
+		},
+
+		checkFiles: function() {
+			this.$el.find( 'p' ).remove();
+
+			if( 0 === this.collection.found ) {
+				this.setEmpty();
+			} else if ( this.collection.found > 20 ) {
+				this.$el.append( '<button type="button" class="btn btn-default btn-md more">View More</button>' );
+			}
+		},
+
+		setLoading: function () {
+			this.$el.html( '<p>Loading your media library...</p>' );
+		},
+
+		setEmpty: function() {
+			this.$el.html( '<p>No files found! Upload something :)</p>' );
+		}
 	} );
 
 	return app.filelistView;
