@@ -6,6 +6,7 @@ define([
 ], function( $, _, Backbone ) {
 	app.filelistView = Backbone.View.extend( {
 		id: 'filegrid',
+		isLoadingMore: false,
 
 		events: {
 			'click .more': 'more'
@@ -19,7 +20,7 @@ define([
 
 			// Listen for new files
 			this.listenTo( this.collection, 'reset', _.bind( this.render, this ) );
-			this.listenTo( this.collection, 'add', _.bind( this.appendFile, this ) );
+			this.listenTo( this.collection, 'add', _.bind( this.addFile, this ) );
 		},
 
 		setLoading: function () {
@@ -46,6 +47,14 @@ define([
 			return fileView.render().el;
 		},
 
+		addFile: function( file ) {
+			if ( this.isLoadingMore ) {
+				this.appendFile( file );
+			} else {
+				this.prependFile( file );
+			}
+		},
+
 		appendFile: function ( file ) {
 			var output = this.renderFile( file );
 
@@ -60,7 +69,9 @@ define([
 
 		more: function() {
 			var $more = this.$( '.more' );
-			$more.html( '' );
+			$more.remove();
+
+			this.isLoadingMore = true;
 			var self = this;
 
 			var data = {};
@@ -71,6 +82,7 @@ define([
 				add: true,
 				success: function() {
 					self.$el.append( '<button type="button" class="btn btn-default btn-md more">View More</button>' );
+					self.isLoadingMore = false;
 				}
 			} );
 		}
