@@ -21,12 +21,17 @@ define([
 				.attr( 'width', '150' )
 				.attr( 'height', '150' )
 				.attr( 'data-id', this.model.cid );
+			if( this.model.get( 'pending' ) ) { this.$el.addClass('pending'); }
 			return this;
 		},
 
 		togglePending: function() {
 			console.log("SOMETHING changed", this.model.get('pending'));
-			this.$el.toggleClass( 'pending' );
+			if( this.model.get( 'pending' ) ) {
+				this.$el.addClass( 'pending' );
+			} else {
+				this.$el.removeClass( 'pending' );
+			}
 		},
 
 		loadSingleView: function() {
