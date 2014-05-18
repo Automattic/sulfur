@@ -2,6 +2,7 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
+	'bootstrap',
 	'models/file'
 ], function( $, _, Backbone ) {
 	app.singleView = Backbone.View.extend( {
@@ -10,6 +11,7 @@ define([
 		template: _.template( $( '#single-template' ).html() ),
 
 		render: function () {
+			console.log( this.model.attributes );
 			var that = this;
 
 			this.$el.html(
