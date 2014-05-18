@@ -21,6 +21,8 @@ define([
 
 			this.$el.find( '.modal' ).modal( 'show' );
 
+			// TODO -- this should all be on events: {}
+
 			this.$el.find( '.btn-danger' ).click( function() {
 				if ( confirm( 'Are you sure you want to delete this image?' ) ) {
 					that.$el.find( '.modal' ).modal( 'hide' );
