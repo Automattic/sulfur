@@ -47,11 +47,13 @@ body#the-body.dragged::after {
 }
 
 #header #userdetails{
-	width:22%;
+	width:34%;
+	float:right;
 }
 
 #header h1{
-	width:75%;
+	width:55%;
+	float:left;
 	margin:0;
 }
 
@@ -72,6 +74,10 @@ body#the-body.dragged::after {
 	margin: 0 auto;
 	max-width: 1050px;
 	width: 100%;
+}
+
+.logout-button {
+	margin-top:4px;
 }
 
 /* Picker */ 
@@ -131,6 +137,10 @@ button.more{
 	float: left;
 	margin-left: 20px;
 	width: 200px;
+}
+
+.clear {
+	clear:both;
 }
 
 .modal-body aside input {
