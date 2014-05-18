@@ -1,13 +1,16 @@
 define([
 	'jquery',
 	'underscore',
-	'backbone'
+	'backbone',
+	'bootstrap',
+	'models/file'
 ], function( $, _, Backbone ) {
 	app.singleView = Backbone.View.extend( {
 		model 	: app.fileModel,
 		template: _.template( $( '#single-template' ).html() ),
 
 		render: function() {
+			console.log( this.model.attributes );
 			var that = this;
 
 			this.$el.html(
