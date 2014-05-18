@@ -96,22 +96,27 @@ define([
 
 			} );
 
-			// TODO -- this shouldn't be in this view, and in app.js
-
-			$( document ).on( 'dragover', '#the-body', function () {
+			var $document = $( document );
+			$document.on( 'dragover.sulfur', '#the-body', function () {
 				$( '#the-body' ).addClass( 'dragged' );
 			} );
 
-			$( document ).on( 'drop', '#the-body', function () {
+			$document.on( 'drop.sulfur', '#the-body', function () {
 				$( '#the-body' ).removeClass( 'dragged' );
 			} );
 
-			$( document ).on( 'dragleave', '#the-body', function () {
+			$document.on( 'dragleave.sulfur', '#the-body', function () {
 				$( '#the-body' ).removeClass( 'dragged' );
 			} );
 
 
 			this.uploader.init();
+		},
+
+		remove: function(){
+			$( document ).off( '.sulfur' );
+
+			Backbone.View.prototype.remove.apply( this, arguments );
 		}
 
 	} );

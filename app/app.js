@@ -6,6 +6,7 @@ require([
 	'backbone',
 	'router'
 ], function( $, _, Backbone, Router ) {
+
 	// Pass the auth details when we do a request.
 	$.ajaxSetup({
 		beforeSend: function( xhr ) {
