@@ -40,9 +40,9 @@ define([
 		},
 
 		parse: function( response ) {
-			response.metadata.image_meta.shutter_speed = this.formatShutterSpeed( response.metadata.image_meta.shutter_speed );
-			response.metadata.image_meta.aperture = 'f/' + response.metadata.image_meta.aperture;
-			response.metadata.image_meta.focal_length = response.metadata.image_meta.focal_length + ' mm';
+			response.metadata.image_meta.shutter_speed = response.metadata.image_meta.shutter_speed ? this.formatShutterSpeed( response.metadata.image_meta.shutter_speed ) : response.metadata.image_meta.shutter_speed;
+			response.metadata.image_meta.aperture = response.metadata.image_meta.aperture ? 'f/' + response.metadata.image_meta.aperture : response.metadata.image_meta.aperture;
+			response.metadata.image_meta.focal_length = response.metadata.image_meta.focal_length ? response.metadata.image_meta.focal_length + ' mm' : response.metadata.image_meta.focal_length;
 			return response;
 		},
 
