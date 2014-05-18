@@ -32,6 +32,9 @@ define([
 		confirmDelete: function() {
 			if ( confirm( 'Are you sure you want to delete this image?' ) ) {
 				this.$el.find( '.modal' ).modal( 'hide' );
+				if ( app.filelistViewInstance )
+					app.filelistViewInstance.trigger( 'destroyedModel', this.model );
+
 				this.model.destroy( {
 					success: function( model, response ) {
 						app.router.navigate( '', { trigger: true } );

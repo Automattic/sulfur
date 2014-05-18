@@ -19,6 +19,7 @@ define([
 
 			// Listen for new files
 			this.listenTo( this.collection, 'add', _.bind( this.addFile, this ) );
+			this.on( 'destroyedModel', this.removeFile, this );
 
 			// Check for files status when fetch is done
 			this.listenTo( this.collection, 'fetched', _.bind( this.checkFiles, this ) );
@@ -36,6 +37,10 @@ define([
 			} else {
 				this.appendFile( file );
 			}
+		},
+
+		removeFile: function( file ) {
+			$( '#file-' + file.get( 'id' ) ).remove();
 		},
 
 		appendFile: function ( file ) {
