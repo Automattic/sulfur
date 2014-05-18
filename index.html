@@ -23,13 +23,15 @@
 
     <!-- Templates JS -->
     <script type="text/template" id="header-template">
-        <h1>Sulfur</h1>
+    	<div class="header-inner">
+        	<h1>Sulfur</h1>
+    	</div>
     </script>
 
     <script type="text/template" id="user-template">
         <img id="avatar" src="<%- avatar_URL %>" width="40" height="40" />
         <p id="name"><%- display_name %></p>
-        <a href="#logout" id="logout">Log Out</a>
+        <button type="button" class="btn btn-default btn-xs"><a href="#logout" id="logout">Log Out</a></button>
     </script>
 
     <script type="text/template" id="authorize-template">
@@ -85,7 +87,7 @@
     </script>
 
     <script type="text/template" id="picker-template">
-        <button id="pickfiles" class="btn btn-primary">Select Files</button>
+        <button id="pickfiles" class="btn btn-primary btn-md">Select Files</button>
     </script>
 
     <!-- Load Everything through requirejs -->

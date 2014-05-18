@@ -21,7 +21,7 @@ define([
 					model: this.userModel
 				} );
 
-				this.$el.append( this.userdetailsView.render().el );
+				this.$el.find(".header-inner").append( this.userdetailsView.render().el );
 			}, this ) );
 
 			return this;

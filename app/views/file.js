@@ -11,8 +11,12 @@ define([
 			'click' : 'loadSingleView'
 		},
 
+		initialize: function() {
+			this.listenTo( this.model, 'change', _.bind( this.togglePending, this ) );
+		},
+
 		render: function() {
-			this.$el.attr( 'src', this.model.get( 'link' ) )
+			this.$el.attr( 'src', this.model.getPreview() )
 				.attr( 'id' , 'file-' + this.model.get( 'id' ) )
 				.attr( 'width', '150' )
 				.attr( 'height', '150' )
@@ -21,7 +25,7 @@ define([
 		},
 
 		togglePending: function() {
-			console.log("pending changed");
+			console.log("SOMETHING changed", this.model.get('pending'));
 			this.$el.toggleClass( 'pending' );
 		},
 
