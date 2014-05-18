@@ -9,7 +9,7 @@ define([
 		found: 0,
 
 		url: function () {
-			return 'https://public-api.wordpress.com/rest/v1/sites/' + app.auth.siteID + '/media/';
+			return 'https://public-api.wordpress.com/rest/v1/sites/' + app.auth.siteID + '/media/?number=50';
 		},
 
 		initialize: function () {
