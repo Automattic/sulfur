@@ -28,4 +28,11 @@ require.config({
 	}
 });
 
+
+// Token and site id
+app.auth = {
+	accessToken: localStorage.getItem( 'access_token' ),
+	siteID: localStorage.getItem( 'site_id' )
+};
+
 require( ['app'] );
