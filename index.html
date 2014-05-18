@@ -50,29 +50,29 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <img src="<%- link %>?w=500" width="500">
                         <aside>
-                            <div><h4>Title</h4> <%- title ? title : 'n/a' %></div>
-                            <div><h4>Caption</h4> <%- caption ? caption : 'n/a' %></div>
-                            <div><h4>Description</h4> <%- description ? description : 'n/a' %></div>
-                            <div><h4>Image ID</h4> <%- id %></div>
-
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a href="#general" data-toggle="tab">General</a></li>
-                                <li><a href="#camera" data-toggle="tab">Camera</a></li>
+                            <div class="main-info title"><h4>Title</h4> <%- title ? title : 'No title added' %></div>
+                            <div class="main-info caption"><h4>Caption</h4> <%- caption ? caption : 'No caption added' %></div>
+                            <div class="main-info description"><h4>Description</h4> <%- description ? description : 'No description added' %></div>
+                            <div class="main-info image-id"><h4>Image ID</h4> <%- id %></div>
+                            
+                            <ul class="nav nav-tabs nav-justified">
+                                <li class="active"><a href="#general" data-toggle="tab"><span class="glyphicon glyphicon-info-sign"></span>General</a></li>
+                                <li><a href="#camera" data-toggle="tab"><span class="glyphicon glyphicon-camera"></span>Camera</a></li>
                             </ul>
 
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div class="tab-pane active" id="general">
-                                    <div><h4>Size</h4> <%- metadata.width %> x <%- metadata.height %></div>
-                                    <div><h4>Uploaded On</h4> <%- date %></div>
-                                    <div><h4>Link</h4><input type="text" value="<%- link %>" readonly="readonly"/></div>
+                                    <div class="gen-info size"><h4>Size</h4> <%- metadata.width %> x <%- metadata.height %></div>
+                                    <div class="gen-info date"><h4>Uploaded On</h4> <%- date %></div>
+                                    <div class="gen-info link"><h4>Link</h4><input type="text" value="<%- link %>" readonly="readonly"/></div>
                                 </div>
                                 <div class="tab-pane" id="camera">
-                                    <div><h4>Camera</h4> <%- metadata.image_meta.camera ? metadata.image_meta.camera : 'n/a' %></div>
-                                    <div><h4>Aperture</h4> <%- metadata.image_meta.aperture ? metadata.image_meta.aperture : 'n/a' %></div>
-                                    <div><h4>ISO</h4> <%- metadata.image_meta.iso ? metadata.image_meta.iso : 'n/a' %></div>
-                                    <div><h4>Focal Length</h4> <%- metadata.image_meta.focal_length ? metadata.image_meta.focal_length : 'n/a' %></div>
-                                    <div><h4>Shutter Speed</h4> <%- metadata.image_meta.shutter_speed ? metadata.image_meta.shutter_speed : 'n/a' %></div>
+                                    <div class="cam-info camera"><h4>Camera</h4> <%- metadata.image_meta.camera ? metadata.image_meta.camera : 'n/a' %></div>
+                                    <div class="cam-info iso"><h4>ISO</h4> <%- metadata.image_meta.iso ? metadata.image_meta.iso : 'n/a' %></div>
+                                    <div class="cam-info shutter"><h4>Shutter Speed</h4> <%- metadata.image_meta.shutter_speed ? metadata.image_meta.shutter_speed : 'n/a' %></div>
+                                    <div class="cam-info aperature"><h4>Aperture</h4> <%- metadata.image_meta.aperture ? metadata.image_meta.aperture : 'n/a' %></div>
+                                    <div class="cam-info focal"><h4>Focal Length</h4> <%- metadata.image_meta.focal_length ? metadata.image_meta.focal_length : 'n/a' %></div>
                                 </div>
                             </div>
 

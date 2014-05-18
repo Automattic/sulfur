@@ -1,5 +1,6 @@
 body {
 	background: #f6f9fa;
+	color:#384047;
 	position: relative;
 	min-height: 300px;
 }
@@ -97,6 +98,10 @@ body#the-body.dragged::after {
 
 /* File List */ 
 
+#filegrid img.video:before{
+	content:  "\2713 ";
+}
+
 #filegrid img{
 	padding: .35em;
 	transition: all 0.25s ease;
@@ -123,11 +128,7 @@ img.pending {
 	filter: alpha(opacity=40);
 }
 
-@media (min-width: 768px) {
-	.modal-dialog {
-		width: 800px;
-	}
-}
+/*	Modal */
 
 .modal-body img {
 	float: left;
@@ -138,7 +139,7 @@ img.pending {
 .modal-body aside {
 	float: left;
 	margin-left: 20px;
-	width: 200px;
+	width: 238px;
 }
 
 .clear {
@@ -146,9 +147,54 @@ img.pending {
 }
 
 .modal-body aside input {
-	width: 200px;
+	width: 100%;
+}
+
+.modal-body aside .glyphicon{
+	margin-right:6px;
+}
+
+.modal-body .tab-content{
+	padding:.1em 1em 1em 1em;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+}
+
+.modal-body h4{
+	color: #8c989e;
+	font-size: 12px;
+	font-weight: normal;
+	margin-bottom: 0px;
+}
+
+.modal-body .main-info.title{
+	font-weight:bold;
+}
+
+.modal-body .nav-tabs{
+	margin-top:1em;
+}
+
+@media (min-width: 768px) {
+	.modal-dialog {
+		width: 800px;
+	}
+}
 
 @media only screen and (max-width: 770px) {
+
+
+	.header-inner,
+	#filegrid,
+	#picker{
+		padding:1em;
+	}
+	
+	#filegrid{
+		padding-top:0;
+	}
+
 	#header #userdetails{
 		width:48%;
 	}
