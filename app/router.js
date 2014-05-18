@@ -11,7 +11,6 @@ define([
 	'views/filelist',
 	'views/picker',
 	'views/single',
-	'views/spinner',
 ], function( $, _, Backbone, Router ) {
 
 	app.Router = Backbone.Router.extend({
