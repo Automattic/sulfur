@@ -20,6 +20,7 @@ define([
 				.attr( 'id' , 'file-' + this.model.get( 'id' ) )
 				.attr( 'width', '150' )
 				.attr( 'height', '150' )
+				.attr( 'class', this.model.getType() + '-type' )
 				.attr( 'data-id', this.model.cid );
 			if( this.model.get( 'pending' ) ) { this.$el.addClass('pending'); }
 			return this;
