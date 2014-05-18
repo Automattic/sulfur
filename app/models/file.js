@@ -15,7 +15,7 @@ define([
 		getPreview: function() {
 			var metadata = this.get('metadata');
 			if ( 'undefined' == typeof metadata || 'undefined' == typeof metadata.thumb ) {
-				var src = this.get( 'link' );
+				var src = this.get( 'link' ) + '?w=300&h=300&resize=300,300'; // double of 150 for retina
 			} else {
 				// we need a better way to just get the thumb URL
 				var src = this.get( 'link' ).substring( 0, this.get( 'link' ).lastIndexOf( '/' ) ) + '/' + metadata.thumb;
