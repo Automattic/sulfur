@@ -4,42 +4,44 @@ define([
 	'backbone',
 	'collections/filelist',
 	'models/file',
+	'views/userdetails',
+	'views/header',
 	'views/authorization',
 	'views/file',
 	'views/filelist',
-	'views/logout',
 	'views/picker',
 	'views/single',
-	'views/spinner',
 ], function( $, _, Backbone, Router ) {
 
-	app.Router = Backbone.Router.extend( {
+	app.Router = Backbone.Router.extend({
 		currentViews: [],
 
 		routes: {
-			''                      : 'home',
-			'authorize'             : 'authorize',
-			'logout'                : 'logout',
-			'view/:id'              : 'viewSingleItem',
-			'access_token=*fragment': 'getAuthFragment'
+			'': 						'home',
+			'authorize': 				'authorize',
+			'logout': 					'logout',
+			'view/:id':					'viewSingleItem',
+			'access_token=*fragment':	'getAuthFragment'
 		},
 
-		home: function () {
+		home: function() {
+			// So we access this instance in the uploader.
 			app.filelistViewInstance = new app.filelistView();
+
 			this.renderViews( [
-				new app.logoutView(),
-				app.filelistViewInstance,
-				new app.pickerView()
+				new app.headerView(),
+				new app.pickerView(),
+				app.filelistViewInstance
 			] );
 		},
 
-		authorize: function () {
+		authorize: function() {
 			this.renderViews( [
 				new app.authorizationView()
 			] );
 		},
 
-		logout: function () {
+		logout: function() {
 			app.auth = {};
 			localStorage.removeItem( 'access_token' );
 			localStorage.removeItem( 'site_id' );

@@ -19,33 +19,37 @@ define([
 		},
 
 		init: {
-			PostInit: function () {
-				document.getElementById( 'filelist' ).innerHTML = '';
-				app.spinnerViews = [];
-			},
+			FilesAdded: function(up, files) {
+				plupload.each(files, function( file ) {
+					var thumbnail = new mOxie.Image();
+					thumbnail.onload = function() {
+						thumbnail.downsize( 150, 150 );
+						var newFile = new app.fileModel( { 'id' : file.id, 'link' : thumbnail.getAsDataURL() } );
+						app.filelistViewInstance.listenTo( newFile, "change:[pending]", app.filelistViewInstance.togglePending );
+						newFile.pending = true;
+						app.filelistViewInstance.collection.add( newFile );
+					};
 
-			FilesAdded: function ( up, files ) {
-				plupload.each( files, function ( file ) {
-					document.getElementById( 'filelist' ).innerHTML += '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize( file.size ) + ') <b></b></div>';
+					thumbnail.load( file.getSource() );
 
-					var newSpinner = new app.spinnerView();
-					app.spinnerViews.push( newSpinner );
-					$( '#filegrid' ).prepend( newSpinner.render().el );
 				} );
 
 				up.start();
 			},
 
 			UploadProgress: function ( up, file ) {
-				document.getElementById( file.id ).getElementsByTagName( 'b' )[0].innerHTML = '<span>' + file.percent + "%</span>";
+				// document.getElementById( file.id ).getElementsByTagName( 'b' )[0].innerHTML = '<span>' + file.percent + "%</span>";
 			},
 
 			FileUploaded: function ( up, file, response ) {
-				var data = jQuery.parseJSON( response.response );
-				$.each( data['media'], function ( i, elem ) {
-					app.spinnerViews.pop().remove();
-					var newFile = new app.fileModel( elem );
-					app.filelistViewInstance.collection.add( newFile );
+				var data = jQuery.parseJSON(response.response);
+				$.each( data['media'], function( i, elem ) {
+					var cid = $( '#file-' + file.id ).data( 'id' );
+					var newFile = app.filelistViewInstance.collection.get( cid );
+					// console.log(newFile);
+					// TODO add the new information to the model
+					// newFile.extend( elem );
+					newFile.pending = false;
 				} );
 			},
 

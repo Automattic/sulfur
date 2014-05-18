@@ -35,10 +35,9 @@ body#the-body.dragged::after {
 	display: none;
 }
 
-.spinner {
-	background: url('/images/spinner.gif') #f0f0f0 no-repeat center center;
-	width: 150px;
-	height: 150px;
+.pending {
+	border: 1px red solid;
+/*	background: url('/images/spinner.gif') #f0f0f0 no-repeat center center;
 	vertical-align: middle;
 	display: inline-block;
-}
+*/}
