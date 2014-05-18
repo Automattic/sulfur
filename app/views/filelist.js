@@ -26,6 +26,10 @@ define([
 			this.$el.html( 'Loading your media library...' );
 		},
 
+		setEmpty: function() {
+			this.$el.html( 'No files found! Upload something :)' );
+		},
+
 		render: function () {
 			this.$el.html( '' );
 
@@ -33,7 +37,11 @@ define([
 				this.appendFile( file );
 			}, this ) );
 
-			this.$el.append( '<button type="button" class="btn btn-default btn-md more">View More</button>' );
+			if( 0 === this.collection.models.length ) {
+				this.setEmpty();
+			} else {
+				this.$el.append( '<button type="button" class="btn btn-default btn-md more">View More</button>' );
+			}
 
 			$( '#pickfiles' ).show();
 
