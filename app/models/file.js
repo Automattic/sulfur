@@ -12,11 +12,11 @@ define([
 
 		getPreview: function() {
 			var metadata = this.get('metadata');
-			if ( metadata.thumb ) {
+			if ( 'undefined' == typeof metadata || 'undefined' == typeof metadata.thumb ) {
+				var src = this.get( 'link' );
+			} else {
 				// we need a better way to just get the thumb URL
 				var src = this.get( 'link' ).substring( 0, this.get( 'link' ).lastIndexOf( '/' ) ) + '/' + metadata.thumb;
-			} else {
-				var src = this.get( 'link' );
 			}
 			return src;
 		},
