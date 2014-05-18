@@ -53,35 +53,8 @@
         <div id="file-container"></div>
     </script>
 
-    <!-- Library JS -->
-    <script src="/js/jquery.js"></script>
-    <script src="/js/underscore.js"></script>
-    <script src="/js/backbone.js"></script>
-    <script src="/js/bootstrap.js"></script>
-    <script src="/js/plupload.full.min.js"></script>
-
-    <!-- App Init -->
-    <script>
-      window.app = {};
-    </script>
-
-    <!-- App JS -->
-    <script src="app/config.js"></script>
-
-    <script src="app/models/file.js"></script>
-    <script src="app/collections/filelist.js"></script>
-
-    <script src="app/views/authorization.js"></script>
-    <script src="app/views/logout.js"></script>
-    <script src="app/views/file.js"></script>
-    <script src="app/views/filelist.js"></script>
-    <script src="app/views/single.js"></script>
-    <script src="app/views/picker.js"></script>
-    <script src="app/views/spinner.js"></script>
-
-    <script src="app/router.js"></script>
-    <script src="app/app.js"></script>
-    <script src="app/uploader.js"></script>
+    <!-- Load Everything through requirejs -->
+    <script data-main="/app/config.js" src="/js/require.js"></script>
 
   </body>
 </html>

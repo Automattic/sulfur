@@ -8,15 +8,24 @@ app.config = {
 	}
 };
 
-// Token and site id
-app.auth = {
-	accessToken: localStorage.getItem( 'access_token' ),
-	siteID: localStorage.getItem( 'site_id' )
-}
-
-// Pass the auth details when we do a request.
-$.ajaxSetup({
-	beforeSend: function( xhr ) {
-		xhr.setRequestHeader( 'Authorization', 'BEARER ' + app.auth.accessToken );
+require.config({
+	baseUrl: '/app/',
+	paths: {
+		jquery: '../js/jquery',
+		underscore: '../js/underscore',
+		backbone: '../js/backbone',
+		boostrap: '../js/boostrap',
+		plupload: '../js/plupload'
+	},
+	shim: {
+		underscore: {
+			exports: '_'
+		},
+		backbone: {
+			deps: ["underscore", "jquery"],
+			exports: "Backbone"
+		}
 	}
 });
+
+require( ['app'] );

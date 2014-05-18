@@ -1,91 +1,107 @@
-var app = app || {};
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'collections/filelist',
+	'models/file',
+	'views/authorization',
+	'views/file',
+	'views/filelist',
+	'views/logout',
+	'views/picker',
+	'views/single',
+	'views/spinner',
+], function( $, _, Backbone, Router ) {
 
-app.Router = Backbone.Router.extend({
-	currentViews: [],
+	app.Router = Backbone.Router.extend( {
+		currentViews: [],
 
-	routes: {
-		'': 						'home',
-		'authorize': 				'authorize',
-		'logout': 					'logout',
-		'view/:id':					'viewSingleItem',
-		'access_token=*fragment':	'getAuthFragment'
-	},
+		routes: {
+			''                      : 'home',
+			'authorize'             : 'authorize',
+			'logout'                : 'logout',
+			'view/:id'              : 'viewSingleItem',
+			'access_token=*fragment': 'getAuthFragment'
+		},
 
-	home: function() {
-		app.filelistViewInstance = new app.filelistView();
-		this.renderViews( [
-			new app.logoutView(),
-			app.filelistViewInstance,
-			new app.pickerView()
-		] );
-	},
-
-	authorize: function() {
-		this.renderViews( [
-			new app.authorizationView()
-		] );
-	},
-
-	logout: function() {
-		app.auth = {};
-		localStorage.removeItem( 'access_token' );
-		localStorage.removeItem( 'site_id' );
-
-		this.navigate( 'authorize', { trigger: true, replace: true } );
-	},
-
-	viewSingleItem : function( id ) {
-		var singleItem = new app.fileModel( { id: id } );
-
-		singleItem.fetch().done( _.bind( function() {
+		home: function () {
+			app.filelistViewInstance = new app.filelistView();
 			this.renderViews( [
-				new app.singleView( { model: singleItem } )
+				new app.logoutView(),
+				app.filelistViewInstance,
+				new app.pickerView()
 			] );
-		}, this ) );
-	},
+		},
 
-    renderViews: function ( views ) {
-    	// Remove any current views
-    	if ( this.currentViews.length ) {
-    		$.each( this.currentViews, function( i, view ) {
-    			view.remove();
-    		} );
-    	}
+		authorize: function () {
+			this.renderViews( [
+				new app.authorizationView()
+			] );
+		},
 
-    	if ( ! views ) {
-    		return false;
-    	}
+		logout: function () {
+			app.auth = {};
+			localStorage.removeItem( 'access_token' );
+			localStorage.removeItem( 'site_id' );
 
-    	$.each( views, function( i, view ) {
-    		var el = view.render().el;
+			this.navigate( 'authorize', { trigger: true, replace: true } );
+		},
 
-			$( '#main' ).append( el );
-    	} );
+		viewSingleItem: function ( id ) {
+			var singleItem = new app.fileModel( { id: id } );
 
-        this.currentViews = views;
-        return this;
-    },
+			singleItem.fetch().done( _.bind( function () {
+				this.renderViews( [
+					new app.singleView( { model: singleItem } )
+				] );
+			}, this ) );
+		},
 
-	getAuthFragment: function() {
-		// Extract the auth details from the # fragment returned by the API
-		var response = _.object(
-			_.compact(
-				_.map( location.hash.slice( 1 ).split( '&' ), function ( item ) {
-					if ( item ) {
-						return item.split( '=' );
-					}
-				} )
-			)
-		);
+		renderViews: function ( views ) {
+			// Remove any current views
+			if ( this.currentViews.length ) {
+				$.each( this.currentViews, function ( i, view ) {
+					view.remove();
+				} );
+			}
 
-		app.auth = {
-			accessToken: decodeURIComponent( response.access_token ),
-			siteID     : response.site_id
-		};
+			if ( !views ) {
+				return false;
+			}
 
-		localStorage.setItem( 'access_token', app.auth.accessToken );
-		localStorage.setItem( 'site_id', app.auth.siteID );
+			$.each( views, function ( i, view ) {
+				var el = view.render().el;
 
-		this.navigate( '', {trigger: true} );
-	}
+				$( '#main' ).append( el );
+			} );
+
+			this.currentViews = views;
+			return this;
+		},
+
+		getAuthFragment: function () {
+			// Extract the auth details from the # fragment returned by the API
+			var response = _.object(
+				_.compact(
+					_.map( location.hash.slice( 1 ).split( '&' ), function ( item ) {
+						if ( item ) {
+							return item.split( '=' );
+						}
+					} )
+				)
+			);
+
+			app.auth = {
+				accessToken: decodeURIComponent( response.access_token ),
+				siteID     : response.site_id
+			};
+
+			localStorage.setItem( 'access_token', app.auth.accessToken );
+			localStorage.setItem( 'site_id', app.auth.siteID );
+
+			this.navigate( '', {trigger: true} );
+		}
+	} );
+
+	return app.Router;
 });
