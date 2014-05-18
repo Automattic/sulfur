@@ -11,18 +11,23 @@ body#the-body.dragged {
 	opacity: .3;
 }
 
+
 body#the-body.dragged::after {
 	content: 'Drop to Upload';
 	position: absolute;
 	text-align: center;
-	font-weight: bold;
-	font-size: 50px;
+	font-size: 80px;
 	top: 50%;
 	left: 50%;
 	width: 380px;
-	height: 76px;
 	margin-top: -38px;
 	margin-left: -190px;
+	line-height: 1.2em;
+	color: #000;
+	background: #a5ceec;
+	border: 5px dashed #333;
+	border-radius: 15px;
+	padding: 20px;
 }
 
 #authorize {
@@ -73,7 +78,6 @@ body#the-body.dragged::after {
 
 #header #userdetails #name{
 	color: #ffe295;
-	font-size: 1.2em;
 }
 
 #header #userdetails #blog{
@@ -90,7 +94,7 @@ body#the-body.dragged::after {
 }
 
 .logout-button {
-	margin-top:4px;
+	margin-top: 7px;
 	background: #717a84;
 }
 
@@ -233,7 +237,7 @@ img.video-type:before{
 	#header #userdetails #avatar {
 		border: 1px solid #eee;
 		height: 25px;
-		margin:0 0 .25em .25em;
+		margin: 0 .5em .25em 0;
 		width: 25px;
 		}
 }

@@ -74,7 +74,7 @@ define([
 				success: _.bind( function() {
 
 					if ( self.collection.found > self.$el.find( "img" ).length ) {
-						this.$el.append( '<button type="button" class="btn btn-default btn-md more">View More</button>' );
+						this.$el.append( '<button type="button" class="btn btn-default btn-lg more">View More</button>' );
 					}
 
 					$( 'html, body' ).animate( {
@@ -90,7 +90,7 @@ define([
 			if( 0 === this.collection.found ) {
 				this.setEmpty();
 			} else if ( this.collection.found > 20 ) {
-				this.$el.append( '<button type="button" class="btn btn-default btn-md more">View More</button>' );
+				this.$el.append( '<button type="button" class="btn btn-default btn-lg more">View More</button>' );
 			}
 		},
 
