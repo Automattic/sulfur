@@ -61,15 +61,19 @@ define([
 
 			var data = {};
 			data.offset = this.$el.find( "img" ).length;
+			var self = this;
 
 			this.collection.fetch( {
 				data: data,
 				add: true,
 				success: _.bind( function() {
-					this.$el.append( '<button type="button" class="btn btn-default btn-md more">View More</button>' );
+
+					if ( self.collection.found > self.$el.find( "img" ).length ) {
+						this.$el.append( '<button type="button" class="btn btn-default btn-md more">View More</button>' );
+					}
 
 					$( 'html, body' ).animate( {
-						scrollTop: $( '.more' ).offset().top
+						scrollTop: $( 'img:last' ).offset().top
 					}, 1000 );
 				}, this )
 			} );
@@ -78,9 +82,9 @@ define([
 		checkFiles: function() {
 			this.$el.find( 'p' ).remove();
 
-			if ( 0 === this.collection.models.length ) {
+			if( 0 === this.collection.found ) {
 				this.setEmpty();
-			} else {
+			} else if ( this.collection.found > 20 ) {
 				this.$el.append( '<button type="button" class="btn btn-default btn-md more">View More</button>' );
 			}
 		},
