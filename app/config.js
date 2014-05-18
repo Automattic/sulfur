@@ -14,7 +14,7 @@ require.config({
 		jquery: '../js/jquery',
 		underscore: '../js/underscore',
 		backbone: '../js/backbone',
-		boostrap: '../js/boostrap',
+		bootstrap: '../js/bootstrap',
 		plupload: '../js/plupload'
 	},
 	shim: {
