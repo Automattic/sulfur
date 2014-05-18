@@ -12,7 +12,7 @@ define([
 		},
 
 		initialize: function () {
-			this.fetch( { reset: true } );
+			this.fetch( { remove: false } );
 		},
 
 		parse: function ( response ) {
