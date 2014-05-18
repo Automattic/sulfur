@@ -22,14 +22,18 @@ define([
 		},
 
 		initUploader: function() {
+			var dropZone = $( '#the-body' )[0],
+				button = this.$el.find( '#pickfiles' )[0],
+				container = this.$el.find( '#file-container' )[0];
+
 			this.uploader = new plupload.Uploader( {
 				runtimes      : 'html5,html4',
-				browse_button : 'pickfiles',
-				container     : this.$el.find( '#file-container' ),
+				browse_button : button,
+				container     : container,
 				url           : 'https://public-api.wordpress.com/rest/v1/sites/' + app.auth.siteID + '/media/new',
 				file_data_name: 'media[]',
 				headers       : { Authorization: "Bearer " + app.auth.accessToken },
-				drop_element  : $( '#the-body' ),
+				drop_element  : dropZone,
 				filters       : {
 					max_file_size: '10mb',
 					mime_types   : [
