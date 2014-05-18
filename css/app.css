@@ -142,6 +142,10 @@ img.pending {
 	width: 238px;
 }
 
+.modal-body button.close {
+	margin-bottom: -25px;
+}
+
 .clear {
 	clear:both;
 }
