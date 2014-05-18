@@ -4,6 +4,7 @@ define([
 	'backbone'
 ], function( $, _, Backbone ) {
 	app.fileView = Backbone.View.extend( {
+		id 	   : 'file',
 		tagName: 'img',
 		model  : app.fileModel,
 
