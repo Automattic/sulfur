@@ -68,9 +68,7 @@ define([
 						$.each( data['media'], function ( i, elem ) {
 							var cid = $( '#file-' + file.id ).data( 'id' );
 							var newFile = app.filelistViewInstance.collection.get( cid );
-							// console.log(newFile);
-							// TODO add the new information to the model
-							// newFile.extend( elem );
+							newFile.set( elem );
 							newFile.pending = false;
 						} );
 					},
