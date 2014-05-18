@@ -27,7 +27,7 @@ define([
 			this.$el.find( '.modal' )
 				.modal( 'show' )
 				.on( 'hidden.bs.modal', function() {
-					app.router.navigate( '', { trigger: false } );
+					app.router.navigate( 'm', { trigger: false } );
 				} );
 
 			return this;

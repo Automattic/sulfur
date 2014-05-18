@@ -19,6 +19,7 @@ define([
 
 		routes: {
 			'': 						'home',
+			'm': 						'home',
 			'authorize': 				'authorize',
 			'logout': 					'logout',
 			'view/:id':					'viewSingleItem',
