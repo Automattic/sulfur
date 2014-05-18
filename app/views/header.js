@@ -15,11 +15,14 @@ define([
 			).attr( 'id', this.id );
 
 			// Render user details view
-			this.userdetailsView = new app.userdetailsView( {
-				model: new app.userModel()
-			} );
+			this.userModel = new app.userModel();
+			this.userModel.fetch().done( _.bind( function() {
+				this.userdetailsView = new app.userdetailsView( {
+					model: this.userModel
+				} );
 
-			this.$el.append( this.userdetailsView.render().el );
+				this.$el.append( this.userdetailsView.render().el );
+			}, this ) );
 
 			return this;
 		},
@@ -30,4 +33,6 @@ define([
 			Backbone.View.prototype.remove.apply( this, arguments );
 		}
 	} );
+
+	return app.headerView;
 } );

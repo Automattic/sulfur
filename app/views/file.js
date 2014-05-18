@@ -1,12 +1,11 @@
 define([
 	'jquery',
 	'underscore',
-	'backbone',
-	'models/file'
+	'backbone'
 ], function( $, _, Backbone ) {
 	app.fileView = Backbone.View.extend( {
 		tagName: 'img',
-		model: app.fileModel,
+		model  : app.fileModel,
 
 		events: {
 			'click' : 'loadSingleView'

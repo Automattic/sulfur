@@ -4,7 +4,7 @@ define([
 	'backbone'
 ], function( $, _, Backbone ) {
 	app.singleView = Backbone.View.extend( {
-		model: app.fileModel,
+		model 	: app.fileModel,
 		template: _.template( $( '#single-template' ).html() ),
 
 		render: function() {
@@ -28,4 +28,6 @@ define([
 			return this;
 		}
 	} );
+
+	return app.singleView;
 } );

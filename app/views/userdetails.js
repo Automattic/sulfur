@@ -6,14 +6,7 @@ define([
 ], function( $, _, Backbone ) {
 	app.userdetailsView = Backbone.View.extend( {
 		id 		: 'userdetails',
-		model 	: app.userModel,
 		template: _.template( $( '#user-template' ).html() ),
-
-		initialize: function() {
-			this.model.fetch();
-
-			this.listenTo( this.model, 'reset', _.bind( this.render, this ) );
-		},
 
 		render: function() {
 			this.$el.html(
@@ -23,4 +16,6 @@ define([
 			return this;
 		}
 	} );
+
+	return app.userdetailsView;
 } );
