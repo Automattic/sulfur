@@ -47,9 +47,11 @@ define([
 							var thumbnail = new mOxie.Image();
 							thumbnail.onload = function () {
 								thumbnail.downsize( 150, 150 );
-								var newFile = new app.fileModel( { 'id': file.id, 'link': thumbnail.getAsDataURL() } );
-								app.filelistViewInstance.listenTo( newFile, "change:[pending]", app.filelistViewInstance.togglePending );
-								newFile.pending = true;
+								var newFile = new app.fileModel( {
+									      'id': file.id,
+									      'link': thumbnail.getAsDataURL()
+								        } );
+								newFile.set( { pending: true } );
 								app.filelistViewInstance.collection.add( newFile );
 							};
 
@@ -69,7 +71,7 @@ define([
 							var cid = $( '#file-' + file.id ).data( 'id' );
 							var newFile = app.filelistViewInstance.collection.get( cid );
 							newFile.set( elem );
-							newFile.pending = false;
+							newFile.set( { pending: false } );
 						} );
 					},
 

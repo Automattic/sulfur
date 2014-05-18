@@ -4,7 +4,9 @@ define([
 	'backbone'
 ], function( $, _, Backbone ) {
 	app.fileModel = Backbone.Model.extend( {
-		pending: false,
+		defaults: {
+			pending: false
+		},
 
 		url: function () {
 			return 'https://public-api.wordpress.com/rest/v1/sites/' + app.auth.siteID + '/media/' + this.get( 'id' );
