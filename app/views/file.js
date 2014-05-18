@@ -12,7 +12,7 @@ define([
 		},
 
 		render: function() {
-			this.$el.attr( 'src', this.model.get( 'link' ) )
+			this.$el.attr( 'src', this.model.getPreview() )
 				.attr( 'id' , 'file-' + this.model.get( 'id' ) )
 				.attr( 'width', '150' )
 				.attr( 'height', '150' )

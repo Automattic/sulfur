@@ -7,7 +7,19 @@ define([
 		pending: false,
 
 		url: function () {
+			console.log('...');
 			return 'https://public-api.wordpress.com/rest/v1/sites/' + app.auth.siteID + '/media/' + this.get( 'id' );
+		},
+
+		getPreview: function() {
+			var metadata = this.get('metadata');
+			if ( metadata.thumb ) {
+				// we need a better way to just get the thumb URL
+				var src = this.get( 'link' ).substring( 0, this.get( 'link' ).lastIndexOf( '/' ) ) + '/' + metadata.thumb;
+			} else {
+				var src = this.get( 'link' );
+			}
+			return src;
 		},
 
 		destroyUrl: function () {

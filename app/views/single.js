@@ -10,8 +10,11 @@ define([
 		render: function() {
 			var that = this;
 
+			var data = this.model.attributes;
+			data.preview = this.model.getPreview();
+
 			this.$el.html(
-				this.template( this.model.attributes )
+				this.template( data )
 			);
 
 			this.$el.find( '.single-image-actions .single-image-delete' ).click( function() {
