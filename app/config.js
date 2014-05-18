@@ -15,7 +15,8 @@ require.config({
 		underscore: '../js/underscore',
 		backbone: '../js/backbone',
 		bootstrap: '../js/bootstrap',
-		plupload: '../js/plupload'
+		plupload: '../js/plupload',
+		moment: '../js/moment'
 	},
 	shim: {
 		underscore: {
