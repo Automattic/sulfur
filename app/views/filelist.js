@@ -6,7 +6,6 @@ define([
 ], function( $, _, Backbone ) {
 	app.filelistView = Backbone.View.extend( {
 		id: 'filegrid',
-		isLoadingMore: false,
 
 		events: {
 			'click .more': 'loadMore'
@@ -20,14 +19,9 @@ define([
 
 			// Listen for new files
 			this.listenTo( this.collection, 'add', _.bind( this.addFile, this ) );
-		},
 
-		setLoading: function () {
-			this.$el.html( '<p>Loading your media library...</p>' );
-		},
-
-		setEmpty: function() {
-			this.$el.html( '<p>No files found! Upload something :)</p>' );
+			// Check for files status when fetch is done
+			this.listenTo( this.collection, 'fetched', _.bind( this.checkFiles, this ) );
 		},
 
 		render: function () {
@@ -37,8 +31,6 @@ define([
 		},
 
 		addFile: function( file ) {
-			this.$el.find( 'p' ).remove();
-
 			if ( file.get( 'pending' ) == true ) {
 				this.prependFile( file );
 			} else {
@@ -75,8 +67,30 @@ define([
 				add: true,
 				success: _.bind( function() {
 					this.$el.append( '<button type="button" class="btn btn-default btn-md more">View More</button>' );
+
+					$( 'html, body' ).animate( {
+						scrollTop: $( '.more' ).offset().top
+					}, 1000 );
 				}, this )
 			} );
+		},
+
+		checkFiles: function() {
+			this.$el.find( 'p' ).remove();
+
+			if ( 0 === this.collection.models.length ) {
+				this.setEmpty();
+			} else {
+				this.$el.append( '<button type="button" class="btn btn-default btn-md more">View More</button>' );
+			}
+		},
+
+		setLoading: function () {
+			this.$el.html( '<p>Loading your media library...</p>' );
+		},
+
+		setEmpty: function() {
+			this.$el.html( '<p>No files found! Upload something :)</p>' );
 		}
 	} );
 

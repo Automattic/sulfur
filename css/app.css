@@ -115,11 +115,13 @@ button.more{
 }
 
 .pending {
-	border: 1px red solid;
-/*	background: url('/images/spinner.gif') #f0f0f0 no-repeat center center;
-	vertical-align: middle;
-	display: inline-block;
-*/}
+	background: url('/images/spinner.gif') #f0f0f0 no-repeat center center;
+}
+
+img.pending {
+	opacity: 0.4;
+	filter: alpha(opacity=40);
+}
 
 @media (min-width: 768px) {
 	.modal-dialog {
