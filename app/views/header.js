@@ -28,7 +28,9 @@ define([
 		},
 
 		remove: function(){
-			this.userdetailsView.remove();
+			if ( ! _.isUndefined( this.userdetailsView ) ) {
+				this.userdetailsView.remove();
+			}
 
 			Backbone.View.prototype.remove.apply( this, arguments );
 		}
