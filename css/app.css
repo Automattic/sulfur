@@ -31,6 +31,7 @@ body#the-body.dragged::after {
 }
 
 #authorize {
+	margin-top: 10%;
 	text-align: center;
 }
 
@@ -39,8 +40,24 @@ body#the-body.dragged::after {
 	margin: 25px auto;
 }
 
+#authorize h1,
+#authorize p{
+	text-shadow: 0 0 10px #fff, 0 0 20px #eee, 0 0 50px #eee, 0 0 60px #eee, 0 0 50px #eee, 0 0 80px #eee, 0 0 90px #eee;
+}
+
 #main{
 	padding:0 0 2em 0;
+}
+
+img.bg-image {
+  min-height: 100%;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index:-1;
+  margin:0 !important;
 }
 
 /* Header */ 

@@ -41,9 +41,12 @@
 
     <script type="text/template" id="authorize-template">
         <h1>Welcome to Sulfur</h1>
-        <p>A sample media library app </br>created using the WordPress REST API</p>
-        <img src="https://i0.wp.com/developer.files.wordpress.com/2014/05/img_4714.jpg?w=400" alt="Sulfur" />
+        <p>A sample media library app created </br>using the WordPress.com REST API</p>
         <a href="https://public-api.wordpress.com/oauth2/authorize?response_type=token&client_id=<%- app.config.oAuth.clientID %>&redirect_uri=<%- app.config.oAuth.redirectURL %>" class="authorize"><img src="//s0.wp.com/i/wpcc-button.png" width="231"></a>
+        <div id="bg-image">        
+        	<img src="images/sulfur.jpg" alt="sulfur" id="sulfur-image" class="bg-image">
+		</div>
+        
     </script>
 
     <script type="text/template" id="single-template">
