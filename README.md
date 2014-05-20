@@ -31,4 +31,4 @@ The application requires a callback URL in order to authenticate with WordPress.
 
 1. Create an app on [developer.wordpress.com](https://developer.wordpress.com/apps).
 2. Set the Redirect URL to your app's URL (e.g. sulfur.dev).
-4. Edit `js/config.js` to include your app's Client ID and redirect URL (must match the information on WordPress.com).
+4. Edit `app/config.js` to include your app's Client ID and redirect URL (must match the information on WordPress.com).
