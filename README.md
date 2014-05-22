@@ -5,6 +5,8 @@ Media manager written for the WordPress.com &amp; Jetpack [REST API](https://dev
 
 Displays all files uploaded to the connected blog and allows you to upload new ones.
 
+Live demo: [sulfur.herokuapp.com](https://sulfur.herokuapp.com).
+
 ### Requirements
 
 Sulfur is a standalone web application that sends requests to the WordPress API. So in order to run it, you only need two things:
