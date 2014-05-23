@@ -40,11 +40,6 @@ body#the-body.dragged::after {
 	margin: 25px auto;
 }
 
-#authorize h1,
-#authorize p{
-	text-shadow: 0 0 10px #fff, 0 0 20px #eee, 0 0 50px #eee, 0 0 60px #eee, 0 0 50px #eee, 0 0 80px #eee, 0 0 90px #eee;
-}
-
 #main{
 	padding:0 0 2em 0;
 }
@@ -106,7 +101,7 @@ img.bg-image {
 #filegrid,
 #picker{
 	margin: 0 auto;
-	max-width: 1050px;
+	max-width: 900px;
 	width: 100%;
 }
 
@@ -145,6 +140,10 @@ img.bg-image {
 
 #filegrid img{
 	padding: .35em;
+	-moz-transition: padding 0.15s ease;
+	-webkit-transition: padding 0.15s ease;
+	-o-transition: padding 0.15s ease;
+	transition: padding 0.15s ease;
 }
 
 #filegrid img:hover{
@@ -178,6 +177,7 @@ img.video-type:before{
 	float: left;
 	width: 500px;
 	min-height: 250px;
+	max-width: 100%;
 }
 
 .modal-body aside {
@@ -256,5 +256,11 @@ img.video-type:before{
 		height: 25px;
 		margin: 0 .5em .25em 0;
 		width: 25px;
+	}
+	
+	.modal-body aside {
+		float: none;
+		margin-left: 0;
+		width: 100%;
 		}
 }
